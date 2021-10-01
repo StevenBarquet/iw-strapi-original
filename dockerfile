@@ -17,4 +17,5 @@ EXPOSE 1337
 CMD [ "node",  "server" ]
 
 # docker build -t strapi_image .
-# docker run --network host --name strapi-container -d --mount type=bind,source=/home/botz/Documents/Interware-repos/IW-Strapi-Front-End/strapi/.tmp/data.db,target=/home/botz/Documents/Interware-repos/IW-Strapi-Front-End/strapi/.tmp/data.db strapi_image
+# docker run --network host --name strapi-container -d  strapi_image
+# docker container logs strapi-container
