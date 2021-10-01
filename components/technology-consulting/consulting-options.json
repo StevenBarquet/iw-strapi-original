@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_technology_consulting_consulting_options",
+  "info": {
+    "name": "consultingOptions",
+    "icon": "blog"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.title"
+    },
+    "carousel": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.carousel-with-images-en"
+    }
+  }
+}

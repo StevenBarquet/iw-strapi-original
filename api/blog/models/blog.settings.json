@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "blogs",
+  "info": {
+    "name": "blog"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.image-with-capition"
+    },
+    "carouselBlog": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.carousel-with-caption"
+    },
+    "bannersBlog": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blog.banners-blog"
+    }
+  }
+}

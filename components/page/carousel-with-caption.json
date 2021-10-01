@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_page_carousel_with_captions",
+  "info": {
+    "name": "carousel-with-caption",
+    "icon": "play-circle"
+  },
+  "options": {},
+  "attributes": {
+    "large_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "caption": {
+      "type": "richtext"
+    },
+    "caption_en": {
+      "type": "richtext"
+    },
+    "medium_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "small_images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

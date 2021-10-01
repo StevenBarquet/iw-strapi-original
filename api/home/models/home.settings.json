@@ -1,0 +1,50 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "name": "home"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.carousel-with-caption",
+      "required": true
+    },
+    "aboutUs": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.about-us",
+      "required": true
+    },
+    "ourExperience": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.our-experience"
+    },
+    "businessPartners": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.business-partners"
+    },
+    "businessPartnersCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.business-card"
+    },
+    "theyTrust": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.they-trust"
+    },
+    "technologyImplementation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.technology-implementation"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "specialized_services",
+  "info": {
+    "name": "specializedServices"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "page.header"
+    },
+    "talentScout": {
+      "type": "component",
+      "repeatable": false,
+      "component": "specialized-services.talent-scout"
+    },
+    "talentAttraction": {
+      "type": "component",
+      "repeatable": false,
+      "component": "specialized-services.talent-attraction"
+    },
+    "talentAttractionCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "specialized-services.talent-attraction-cards"
+    },
+    "recruitBest": {
+      "type": "component",
+      "repeatable": false,
+      "component": "specialized-services.recruit-best"
+    },
+    "requestQuote": {
+      "type": "component",
+      "repeatable": false,
+      "component": "specialized-services.request-quote"
+    }
+  }
+}
