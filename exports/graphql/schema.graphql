@@ -1,0 +1,3237 @@
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+input ArticleInput {
+  seo: ComponentBlogSeoInput
+  content: String
+  content_en: String
+  category: ID
+  tags: [ID]
+  user: ID
+  created_by: ID
+  updated_by: ID
+}
+
+type Articles {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  seo: ComponentBlogSeo
+  content: String
+  content_en: String
+  category: Categories
+  user: Teams
+  tags(sort: String, limit: Int, start: Int, where: JSON): [TagsBlog]
+}
+
+type ArticlesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ArticlesConnection {
+  values: [Articles]
+  groupBy: ArticlesGroupBy
+  aggregate: ArticlesAggregator
+}
+
+type ArticlesConnectionCategory {
+  key: ID
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionContent {
+  key: String
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionContent_en {
+  key: String
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionCreated_at {
+  key: DateTime
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionId {
+  key: ID
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionSeo {
+  key: ID
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionUpdated_at {
+  key: DateTime
+  connection: ArticlesConnection
+}
+
+type ArticlesConnectionUser {
+  key: ID
+  connection: ArticlesConnection
+}
+
+type ArticlesGroupBy {
+  id: [ArticlesConnectionId]
+  created_at: [ArticlesConnectionCreated_at]
+  updated_at: [ArticlesConnectionUpdated_at]
+  seo: [ArticlesConnectionSeo]
+  content: [ArticlesConnectionContent]
+  content_en: [ArticlesConnectionContent_en]
+  category: [ArticlesConnectionCategory]
+  user: [ArticlesConnectionUser]
+}
+
+type Blog {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  carouselBlog: ComponentPageCarouselWithCaption
+  bannersBlog: ComponentBlogBannersBlog
+}
+
+input BlogInput {
+  header: ComponentPageImageWithCapitionInput
+  carouselBlog: ComponentPageCarouselWithCaptionInput
+  bannersBlog: ComponentBlogBannersBlogInput
+  created_by: ID
+  updated_by: ID
+}
+
+type Categories {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  name_en: String
+}
+
+type CategoriesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CategoriesConnection {
+  values: [Categories]
+  groupBy: CategoriesGroupBy
+  aggregate: CategoriesAggregator
+}
+
+type CategoriesConnectionCreated_at {
+  key: DateTime
+  connection: CategoriesConnection
+}
+
+type CategoriesConnectionId {
+  key: ID
+  connection: CategoriesConnection
+}
+
+type CategoriesConnectionName {
+  key: String
+  connection: CategoriesConnection
+}
+
+type CategoriesConnectionName_en {
+  key: String
+  connection: CategoriesConnection
+}
+
+type CategoriesConnectionUpdated_at {
+  key: DateTime
+  connection: CategoriesConnection
+}
+
+type CategoriesGroupBy {
+  id: [CategoriesConnectionId]
+  created_at: [CategoriesConnectionCreated_at]
+  updated_at: [CategoriesConnectionUpdated_at]
+  name: [CategoriesConnectionName]
+  name_en: [CategoriesConnectionName_en]
+}
+
+input CategoryInput {
+  name: String
+  name_en: String
+  created_by: ID
+  updated_by: ID
+}
+
+type ComponentBlogBannersBlog {
+  id: ID!
+  bannerUp: UploadFile
+  bannerDown: UploadFile
+}
+
+input ComponentBlogBannersBlogInput {
+  bannerUp: ID
+  bannerDown: ID
+}
+
+type ComponentBlogSeo {
+  id: ID!
+  shareImage: UploadFile
+  metaTitle: String
+  metaTitle_en: String
+  metaDescription: String
+  metaDescription_en: String
+}
+
+input ComponentBlogSeoInput {
+  shareImage: ID
+  metaTitle: String
+  metaTitle_en: String
+  metaDescription: String
+  metaDescription_en: String
+}
+
+type ComponentHomeAboutUs {
+  id: ID!
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentHomeAboutUsInput {
+  legend: ComponentPageLegendInput!
+  title: ComponentPageTitleInput!
+  introductoryText: ComponentPageIntroductoryTextInput
+  actionButton: ComponentPageActionButtonInput!
+}
+
+type ComponentHomeBack {
+  id: ID!
+  backCardTitle: String
+  backCardTitle_en: String
+  backCardListItems: [ComponentHomeBackCardListItems]
+}
+
+input ComponentHomeBackCardListItemInput {
+  materialIcon: String
+  description: String
+  description_en: String
+}
+
+type ComponentHomeBackCardListItems {
+  id: ID!
+  materialIcon: String
+  description: String
+  description_en: String
+}
+
+input ComponentHomeBackInput {
+  backCardTitle: String
+  backCardTitle_en: String
+  backCardListItems: [ComponentHomeBackCardListItemInput]
+}
+
+type ComponentHomeBusinessCard {
+  id: ID!
+  front: ComponentHomeFront
+  back: ComponentHomeBack
+}
+
+input ComponentHomeBusinessCardInput {
+  front: ComponentHomeFrontInput
+  back: ComponentHomeBackInput
+}
+
+input ComponentHomeBusinessListItemInput {
+  materialIcon: String
+  description: String
+  description_en: String
+  path: String
+}
+
+type ComponentHomeBusinessListItems {
+  id: ID!
+  materialIcon: String
+  description: String
+  description_en: String
+  path: String
+}
+
+input ComponentHomeBusinessPartnerInput {
+  sectionIcon: ID
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  subTitle: ComponentPageSubtitleInput
+}
+
+type ComponentHomeBusinessPartners {
+  id: ID!
+  sectionIcon: UploadFile
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  subTitle: ComponentPageSubtitle
+}
+
+type ComponentHomeFront {
+  id: ID!
+  frontCardTitle: String
+  frontCardTitle_en: String
+  brandImage: UploadFile
+  partnerType: String
+  partnerType_en: String
+  allianceTime: String
+  allianceTime_en: String
+  buttonLabel: String
+  buttonLabel_en: String
+}
+
+input ComponentHomeFrontInput {
+  frontCardTitle: String
+  frontCardTitle_en: String
+  brandImage: ID
+  partnerType: String
+  partnerType_en: String
+  allianceTime: String
+  allianceTime_en: String
+  buttonLabel: String
+  buttonLabel_en: String
+}
+
+type ComponentHomeOurExperience {
+  id: ID!
+  underlinedTitle: String
+  underlinedTitle_en: String
+  introductoryText: String
+  introductoryText_en: String
+  businessListTitle: String
+  businessListTitle_en: String
+  businessListItems: [ComponentHomeBusinessListItems]
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentHomeOurExperienceInput {
+  underlinedTitle: String
+  underlinedTitle_en: String
+  introductoryText: String
+  introductoryText_en: String
+  businessListTitle: String
+  businessListTitle_en: String
+  businessListItems: [ComponentHomeBusinessListItemInput]
+  actionButton: ComponentPageActionButtonInput
+}
+
+type ComponentHomeTechnologyImplementation {
+  id: ID!
+  title: ComponentPageTitle
+  subtitle: ComponentPageSubtitle
+  scrum: UploadFile
+  devOps: UploadFile
+  titleIconScrum: ComponentPageTitle
+  titleIconDevOps: ComponentPageTitle
+}
+
+input ComponentHomeTechnologyImplementationInput {
+  title: ComponentPageTitleInput
+  subtitle: ComponentPageSubtitleInput
+  scrum: ID
+  devOps: ID
+  titleIconScrum: ComponentPageTitleInput
+  titleIconDevOps: ComponentPageTitleInput
+}
+
+type ComponentHomeTheyTrust {
+  id: ID!
+  sectionIcon: UploadFile
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  subTitle: ComponentPageSubtitle
+  brandSlider(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+input ComponentHomeTheyTrustInput {
+  sectionIcon: ID
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  subTitle: ComponentPageSubtitleInput
+  brandSlider: [ID]
+}
+
+type ComponentJoinusCardVacant {
+  id: ID!
+  age: String
+  age_en: String
+  sex: String
+  sex_en: String
+  scholarship: String
+  scholarship_en: String
+  workZone: String
+  workZone_en: String
+  specificRequirements: String
+  specificRequirements_en: String
+  contact: String
+  nameVancant: String
+  nameVancant_en: String
+  tags: [ComponentJoinusTags]
+}
+
+input ComponentJoinusCardVacantInput {
+  age: String
+  age_en: String
+  sex: String
+  sex_en: String
+  scholarship: String
+  scholarship_en: String
+  workZone: String
+  workZone_en: String
+  specificRequirements: String
+  specificRequirements_en: String
+  contact: String
+  nameVancant: String
+  nameVancant_en: String
+  tags: [ComponentJoinusTagInput]
+}
+
+type ComponentJoinusJoinTeam {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+}
+
+input ComponentJoinusJoinTeamInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+}
+
+type ComponentJoinusSendCv {
+  id: ID!
+  underlinedTitle: String
+  underlinedTitle_en: String
+  introductoryText: String
+  introductoryText_en: String
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentJoinusSendCvInput {
+  underlinedTitle: String
+  underlinedTitle_en: String
+  introductoryText: String
+  introductoryText_en: String
+  actionButton: ComponentPageActionButtonInput
+}
+
+input ComponentJoinusTagInput {
+  name: String
+  name_en: String
+}
+
+type ComponentJoinusTags {
+  id: ID!
+  name: String
+  name_en: String
+}
+
+type ComponentPageActionButton {
+  id: ID!
+  label: String
+  label_en: String
+}
+
+input ComponentPageActionButtonInput {
+  label: String
+  label_en: String
+}
+
+type ComponentPageCardInfoWithIcon {
+  id: ID!
+  sectionIcon: UploadFile
+  title: String
+  title_en: String
+  descriptionTexts: String
+  descriptionTexts_en: String
+}
+
+input ComponentPageCardInfoWithIconInput {
+  sectionIcon: ID
+  title: String
+  title_en: String
+  descriptionTexts: String
+  descriptionTexts_en: String
+}
+
+type ComponentPageCardPlansForYou {
+  id: ID!
+  sectionTitle: String
+  sectionTitle_en: String
+  sectionSubTitle: String
+  sectionSubTitle_en: String
+  description: String
+  description_en: String
+}
+
+input ComponentPageCardPlansForYouInput {
+  sectionTitle: String
+  sectionTitle_en: String
+  sectionSubTitle: String
+  sectionSubTitle_en: String
+  description: String
+  description_en: String
+}
+
+type ComponentPageCarouselWithCaption {
+  id: ID!
+  caption: String
+  caption_en: String
+  large_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  medium_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  small_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+input ComponentPageCarouselWithCaptionInput {
+  large_images: [ID]
+  caption: String
+  caption_en: String
+  medium_images: [ID]
+  small_images: [ID]
+}
+
+type ComponentPageCarouselWithImagesEn {
+  id: ID!
+  large_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  large_images_en(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  medium_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  medium_images_en(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  small_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  small_images_en(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+input ComponentPageCarouselWithImagesEnInput {
+  large_images: [ID]
+  large_images_en: [ID]
+  medium_images: [ID]
+  medium_images_en: [ID]
+  small_images: [ID]
+  small_images_en: [ID]
+}
+
+type ComponentPageDropdown {
+  id: ID!
+  topLabel: String
+  topLabel_en: String
+  nestedLinks: [ComponentPageLink]
+}
+
+input ComponentPageDropdownInput {
+  topLabel: String
+  topLabel_en: String
+  nestedLinks: [ComponentPageLinkInput]
+}
+
+type ComponentPageHeader {
+  id: ID!
+  large_image: UploadFile
+  medium_image: UploadFile
+  small_image: UploadFile
+  caption: String
+  caption_en: String
+}
+
+input ComponentPageHeaderInput {
+  large_image: ID
+  medium_image: ID
+  small_image: ID
+  caption: String
+  caption_en: String
+}
+
+type ComponentPageImageWithCapition {
+  id: ID!
+  large_image: UploadFile
+  title: String
+  title_en: String
+  medium_image: UploadFile
+  small_image: UploadFile
+}
+
+input ComponentPageImageWithCapitionInput {
+  large_image: ID
+  title: String
+  title_en: String
+  medium_image: ID
+  small_image: ID
+}
+
+type ComponentPageIntroductoryText {
+  id: ID!
+  introductoryText: String
+  introductoryText_en: String
+}
+
+input ComponentPageIntroductoryTextInput {
+  introductoryText: String
+  introductoryText_en: String
+}
+
+type ComponentPageLegend {
+  id: ID!
+  sectionLegendTitle: String
+  sectionLegendTitle_en: String
+}
+
+input ComponentPageLegendInput {
+  sectionLegendTitle: String
+  sectionLegendTitle_en: String
+}
+
+type ComponentPageLink {
+  id: ID!
+  label: String
+  label_en: String
+  path: String
+}
+
+input ComponentPageLinkInput {
+  label: String
+  label_en: String
+  path: String
+}
+
+type ComponentPageSubtitle {
+  id: ID!
+  sectionSubTitle: String
+  sectionSubTitle_en: String
+}
+
+input ComponentPageSubtitleInput {
+  sectionSubTitle: String
+  sectionSubTitle_en: String
+}
+
+type ComponentPageTitle {
+  id: ID!
+  sectionTitle: String
+  sectionTitle_en: String
+}
+
+input ComponentPageTitleInput {
+  sectionTitle: String
+  sectionTitle_en: String
+}
+
+type ComponentQualityAssuranceOfferGuaranteesQa {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  infoArea: [ComponentPageCardInfoWithIcon]
+}
+
+input ComponentQualityAssuranceOfferGuaranteesQaInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  infoArea: [ComponentPageCardInfoWithIconInput]
+}
+
+type ComponentQualityAssuranceQaDescription {
+  id: ID!
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  subtitle: ComponentPageSubtitle
+}
+
+input ComponentQualityAssuranceQaDescriptionInput {
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  subtitle: ComponentPageSubtitleInput
+}
+
+type ComponentQualityAssuranceQaOffer {
+  id: ID!
+  title: ComponentPageTitle
+  qaOfferCarousel: ComponentPageCarouselWithImagesEn
+}
+
+input ComponentQualityAssuranceQaOfferInput {
+  title: ComponentPageTitleInput
+  qaOfferCarousel: ComponentPageCarouselWithImagesEnInput
+}
+
+type ComponentQualityAssuranceSuccessStoriesQa {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  successStoriesQACarousel: ComponentPageCarouselWithImagesEn
+}
+
+input ComponentQualityAssuranceSuccessStoriesQaInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  successStoriesQACarousel: ComponentPageCarouselWithImagesEnInput
+}
+
+input ComponentRobotBenefitInput {
+  sectionIcon: ID
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  InfoArea: [ComponentPageCardInfoWithIconInput]
+}
+
+type ComponentRobotBenefits {
+  id: ID!
+  sectionIcon: UploadFile
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  InfoArea: [ComponentPageCardInfoWithIcon]
+}
+
+type ComponentRobotForm {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  subtitle: ComponentPageSubtitle
+  introductoryText: ComponentPageIntroductoryText
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentRobotFormInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  subtitle: ComponentPageSubtitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+  actionButton: ComponentPageActionButtonInput
+}
+
+type ComponentRobotFuntioning {
+  id: ID!
+  header: ComponentRobotRobotDescription
+  title: ComponentPageTitle
+  urlYoutube: String
+  introductoryText: ComponentPageIntroductoryText
+}
+
+input ComponentRobotFuntioningInput {
+  header: ComponentRobotRobotDescriptionInput
+  title: ComponentPageTitleInput
+  urlYoutube: String
+  introductoryText: ComponentPageIntroductoryTextInput
+}
+
+type ComponentRobotPlansForYou {
+  id: ID!
+  sectionIcon: UploadFile
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  cardsPlans: [ComponentPageCardPlansForYou]
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentRobotPlansForYouInput {
+  sectionIcon: ID
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  cardsPlans: [ComponentPageCardPlansForYouInput]
+  actionButton: ComponentPageActionButtonInput
+}
+
+type ComponentRobotRobotDescription {
+  id: ID!
+  sectionIcon: UploadFile
+  introductoryText: ComponentPageIntroductoryText
+}
+
+input ComponentRobotRobotDescriptionInput {
+  sectionIcon: ID
+  introductoryText: ComponentPageIntroductoryTextInput
+}
+
+input ComponentSoftwareFactoryBenefitInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  benefitsNavPills: [ComponentSoftwareFactoryBenefitsNavPillInput]
+}
+
+type ComponentSoftwareFactoryBenefits {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  benefitsNavPills: [ComponentSoftwareFactoryBenefitsNavPills]
+}
+
+input ComponentSoftwareFactoryBenefitsNavPillInput {
+  tabIcon: String
+  introductoryText: ComponentPageIntroductoryTextInput
+}
+
+type ComponentSoftwareFactoryBenefitsNavPills {
+  id: ID!
+  tabIcon: String
+  introductoryText: ComponentPageIntroductoryText
+}
+
+input ComponentSoftwareFactoryDeliverableInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+}
+
+type ComponentSoftwareFactoryDeliverables {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+}
+
+input ComponentSoftwareFactoryDeliverablesCardInput {
+  front: ComponentHomeFrontInput
+  back: ComponentHomeBackInput
+}
+
+type ComponentSoftwareFactoryDeliverablesCards {
+  id: ID!
+  front: ComponentHomeFront
+  back: ComponentHomeBack
+}
+
+input ComponentSoftwareFactoryDigitalServiceInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+  actionButton: ComponentPageActionButtonInput!
+}
+
+type ComponentSoftwareFactoryDigitalServices {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentSoftwareFactoryFactoryServiceInput {
+  title: ComponentPageTitleInput
+  factoryServicesCarousel: ComponentPageCarouselWithImagesEnInput
+}
+
+type ComponentSoftwareFactoryFactoryServices {
+  id: ID!
+  title: ComponentPageTitle
+  factoryServicesCarousel: ComponentPageCarouselWithImagesEn
+}
+
+type ComponentSoftwareFactoryTimeMarket {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+}
+
+input ComponentSoftwareFactoryTimeMarketInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+}
+
+type ComponentSpecializedServicesContactus {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentSpecializedServicesContactusInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  actionButton: ComponentPageActionButtonInput
+}
+
+type ComponentSpecializedServicesRecruitBest {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+  carousel: ComponentPageCarouselWithImagesEn
+}
+
+input ComponentSpecializedServicesRecruitBestInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+  carousel: ComponentPageCarouselWithImagesEnInput
+}
+
+type ComponentSpecializedServicesRequestQuote {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+  actionButton: ComponentPageActionButton
+  checkboxTitle: String
+  checkboxTitle_en: String
+}
+
+input ComponentSpecializedServicesRequestQuoteInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+  actionButton: ComponentPageActionButtonInput
+  checkboxTitle: String
+  checkboxTitle_en: String
+}
+
+type ComponentSpecializedServicesTalentAttraction {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+  talentAttractionTitle: ComponentPageTitle
+  contactus: ComponentSpecializedServicesContactus
+}
+
+input ComponentSpecializedServicesTalentAttractionCardInput {
+  front: ComponentHomeFrontInput
+  back: ComponentHomeBackInput
+}
+
+type ComponentSpecializedServicesTalentAttractionCards {
+  id: ID!
+  front: ComponentHomeFront
+  back: ComponentHomeBack
+}
+
+input ComponentSpecializedServicesTalentAttractionInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+  talentAttractionTitle: ComponentPageTitleInput
+  contactus: ComponentSpecializedServicesContactusInput
+}
+
+type ComponentSpecializedServicesTalentScout {
+  id: ID!
+  talentScoutTitle: String
+  talentScoutTitle_en: String
+  talentScoutIntroduction: String
+  talentScoutIntroduction_en: String
+  talentScoutSearchField: String
+  talentScoutSearchField_en: String
+}
+
+input ComponentSpecializedServicesTalentScoutInput {
+  talentScoutTitle: String
+  talentScoutTitle_en: String
+  talentScoutIntroduction: String
+  talentScoutIntroduction_en: String
+  talentScoutSearchField: String
+  talentScoutSearchField_en: String
+}
+
+input ComponentTechnologyConsultingConsultingOptionInput {
+  title: ComponentPageTitleInput
+  carousel: ComponentPageCarouselWithImagesEnInput
+}
+
+type ComponentTechnologyConsultingConsultingOptions {
+  id: ID!
+  title: ComponentPageTitle
+  carousel: ComponentPageCarouselWithImagesEn
+}
+
+input ComponentTechnologyConsultingOfferGuaranteeInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  infoArea: [ComponentPageCardInfoWithIconInput]
+}
+
+type ComponentTechnologyConsultingOfferGuarantees {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  infoArea: [ComponentPageCardInfoWithIcon]
+}
+
+type ComponentTechnologyConsultingSuccessStories {
+  id: ID!
+  sectionIcon: UploadFile
+  title: ComponentPageTitle
+  successStoriesCarousel: ComponentPageCarouselWithImagesEn
+}
+
+input ComponentTechnologyConsultingSuccessStoryInput {
+  sectionIcon: ID
+  title: ComponentPageTitleInput
+  successStoriesCarousel: ComponentPageCarouselWithImagesEnInput
+}
+
+type ComponentTechnologyConsultingTaskOptimization {
+  id: ID!
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  subtitle: ComponentPageSubtitle
+  titleType: ComponentPageTitle
+}
+
+input ComponentTechnologyConsultingTaskOptimizationCardInput {
+  front: ComponentHomeFrontInput
+  back: ComponentHomeBackInput
+}
+
+type ComponentTechnologyConsultingTaskOptimizationCards {
+  id: ID!
+  front: ComponentHomeFront
+  back: ComponentHomeBack
+}
+
+input ComponentTechnologyConsultingTaskOptimizationInput {
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  subtitle: ComponentPageSubtitleInput
+  titleType: ComponentPageTitleInput
+}
+
+input ComponentVacanciesiwBenefitInput {
+  sectionIcon: ID
+  legend: ComponentPageLegendInput
+  title: ComponentPageTitleInput
+  InfoArea: [ComponentPageCardInfoWithIconInput]
+}
+
+type ComponentVacanciesiwBenefits {
+  id: ID!
+  sectionIcon: UploadFile
+  legend: ComponentPageLegend
+  title: ComponentPageTitle
+  InfoArea: [ComponentPageCardInfoWithIcon]
+}
+
+type ComponentVacanciesiwForm {
+  id: ID!
+  title: ComponentPageTitle
+  subtitle: ComponentPageSubtitle
+  actionButton: ComponentPageActionButton
+}
+
+input ComponentVacanciesiwFormInput {
+  title: ComponentPageTitleInput
+  subtitle: ComponentPageSubtitleInput
+  actionButton: ComponentPageActionButtonInput
+}
+
+type ComponentVacanciesiwSearch {
+  id: ID!
+  title: ComponentPageTitle
+  introductoryText: ComponentPageIntroductoryText
+  searchField: String
+  searchField_en: String
+}
+
+input ComponentVacanciesiwSearchInput {
+  title: ComponentPageTitleInput
+  introductoryText: ComponentPageIntroductoryTextInput
+  searchField: String
+  searchField_en: String
+}
+
+input createArticleInput {
+  data: ArticleInput
+}
+
+type createArticlePayload {
+  article: Articles
+}
+
+input createCategoryInput {
+  data: CategoryInput
+}
+
+type createCategoryPayload {
+  category: Categories
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createSpecialtyInput {
+  data: SpecialtyInput
+}
+
+type createSpecialtyPayload {
+  specialty: Specialties
+}
+
+input createTagInput {
+  data: TagInput
+}
+
+type createTagPayload {
+  tag: Tags
+}
+
+input createTagsBlogInput {
+  data: TagsBlogInput
+}
+
+type createTagsBlogPayload {
+  tagsBlog: TagsBlog
+}
+
+input createTeamInput {
+  data: TeamInput
+}
+
+type createTeamPayload {
+  team: Teams
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input createVacancyInput {
+  data: VacancyInput
+}
+
+type createVacancyPayload {
+  vacancy: Vacancies
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format
+outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+input deleteArticleInput {
+  where: InputID
+}
+
+type deleteArticlePayload {
+  article: Articles
+}
+
+type deleteBlogPayload {
+  blog: Blog
+}
+
+input deleteCategoryInput {
+  where: InputID
+}
+
+type deleteCategoryPayload {
+  category: Categories
+}
+
+type deleteHomePayload {
+  home: Home
+}
+
+type deleteJoinUsPayload {
+  joinUs: JoinUs
+}
+
+type deleteNavigationMenuPayload {
+  navigationMenu: NavigationMenu
+}
+
+type deleteQualityAssurancePayload {
+  qualityAssurance: QualityAssurance
+}
+
+type deleteRobotPayload {
+  robot: Robot
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type deleteSoftwareFactoryPayload {
+  softwareFactory: SoftwareFactory
+}
+
+type deleteSpecializedServicePayload {
+  specializedService: SpecializedServices
+}
+
+input deleteSpecialtyInput {
+  where: InputID
+}
+
+type deleteSpecialtyPayload {
+  specialty: Specialties
+}
+
+input deleteTagInput {
+  where: InputID
+}
+
+type deleteTagPayload {
+  tag: Tags
+}
+
+input deleteTagsBlogInput {
+  where: InputID
+}
+
+type deleteTagsBlogPayload {
+  tagsBlog: TagsBlog
+}
+
+input deleteTeamInput {
+  where: InputID
+}
+
+type deleteTeamPayload {
+  team: Teams
+}
+
+type deleteTechnologyConsultingPayload {
+  technologyConsulting: TechnologyConsulting
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type deleteVacanciesIwPayload {
+  vacanciesIw: VacanciesIw
+}
+
+input deleteVacancyInput {
+  where: InputID
+}
+
+type deleteVacancyPayload {
+  vacancy: Vacancies
+}
+
+input editArticleInput {
+  seo: editComponentBlogSeoInput
+  content: String
+  content_en: String
+  category: ID
+  tags: [ID]
+  user: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editBlogInput {
+  header: editComponentPageImageWithCapitionInput
+  carouselBlog: editComponentPageCarouselWithCaptionInput
+  bannersBlog: editComponentBlogBannersBlogInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editCategoryInput {
+  name: String
+  name_en: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editComponentBlogBannersBlogInput {
+  id: ID
+  bannerUp: ID
+  bannerDown: ID
+}
+
+input editComponentBlogSeoInput {
+  id: ID
+  shareImage: ID
+  metaTitle: String
+  metaTitle_en: String
+  metaDescription: String
+  metaDescription_en: String
+}
+
+input editComponentHomeAboutUsInput {
+  id: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentHomeBackCardListItemInput {
+  id: ID
+  materialIcon: String
+  description: String
+  description_en: String
+}
+
+input editComponentHomeBackInput {
+  id: ID
+  backCardTitle: String
+  backCardTitle_en: String
+  backCardListItems: [editComponentHomeBackCardListItemInput]
+}
+
+input editComponentHomeBusinessCardInput {
+  id: ID
+  front: editComponentHomeFrontInput
+  back: editComponentHomeBackInput
+}
+
+input editComponentHomeBusinessListItemInput {
+  id: ID
+  materialIcon: String
+  description: String
+  description_en: String
+  path: String
+}
+
+input editComponentHomeBusinessPartnerInput {
+  id: ID
+  sectionIcon: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  subTitle: editComponentPageSubtitleInput
+}
+
+input editComponentHomeFrontInput {
+  id: ID
+  frontCardTitle: String
+  frontCardTitle_en: String
+  brandImage: ID
+  partnerType: String
+  partnerType_en: String
+  allianceTime: String
+  allianceTime_en: String
+  buttonLabel: String
+  buttonLabel_en: String
+}
+
+input editComponentHomeOurExperienceInput {
+  id: ID
+  underlinedTitle: String
+  underlinedTitle_en: String
+  introductoryText: String
+  introductoryText_en: String
+  businessListTitle: String
+  businessListTitle_en: String
+  businessListItems: [editComponentHomeBusinessListItemInput]
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentHomeTechnologyImplementationInput {
+  id: ID
+  title: editComponentPageTitleInput
+  subtitle: editComponentPageSubtitleInput
+  scrum: ID
+  devOps: ID
+  titleIconScrum: editComponentPageTitleInput
+  titleIconDevOps: editComponentPageTitleInput
+}
+
+input editComponentHomeTheyTrustInput {
+  id: ID
+  sectionIcon: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  subTitle: editComponentPageSubtitleInput
+  brandSlider: [ID]
+}
+
+input editComponentJoinusCardVacantInput {
+  id: ID
+  age: String
+  age_en: String
+  sex: String
+  sex_en: String
+  scholarship: String
+  scholarship_en: String
+  workZone: String
+  workZone_en: String
+  specificRequirements: String
+  specificRequirements_en: String
+  contact: String
+  nameVancant: String
+  nameVancant_en: String
+  tags: [editComponentJoinusTagInput]
+}
+
+input editComponentJoinusJoinTeamInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+}
+
+input editComponentJoinusSendCvInput {
+  id: ID
+  underlinedTitle: String
+  underlinedTitle_en: String
+  introductoryText: String
+  introductoryText_en: String
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentJoinusTagInput {
+  id: ID
+  name: String
+  name_en: String
+}
+
+input editComponentPageActionButtonInput {
+  id: ID
+  label: String
+  label_en: String
+}
+
+input editComponentPageCardInfoWithIconInput {
+  id: ID
+  sectionIcon: ID
+  title: String
+  title_en: String
+  descriptionTexts: String
+  descriptionTexts_en: String
+}
+
+input editComponentPageCardPlansForYouInput {
+  id: ID
+  sectionTitle: String
+  sectionTitle_en: String
+  sectionSubTitle: String
+  sectionSubTitle_en: String
+  description: String
+  description_en: String
+}
+
+input editComponentPageCarouselWithCaptionInput {
+  id: ID
+  large_images: [ID]
+  caption: String
+  caption_en: String
+  medium_images: [ID]
+  small_images: [ID]
+}
+
+input editComponentPageCarouselWithImagesEnInput {
+  id: ID
+  large_images: [ID]
+  large_images_en: [ID]
+  medium_images: [ID]
+  medium_images_en: [ID]
+  small_images: [ID]
+  small_images_en: [ID]
+}
+
+input editComponentPageDropdownInput {
+  id: ID
+  topLabel: String
+  topLabel_en: String
+  nestedLinks: [editComponentPageLinkInput]
+}
+
+input editComponentPageHeaderInput {
+  id: ID
+  large_image: ID
+  medium_image: ID
+  small_image: ID
+  caption: String
+  caption_en: String
+}
+
+input editComponentPageImageWithCapitionInput {
+  id: ID
+  large_image: ID
+  title: String
+  title_en: String
+  medium_image: ID
+  small_image: ID
+}
+
+input editComponentPageIntroductoryTextInput {
+  id: ID
+  introductoryText: String
+  introductoryText_en: String
+}
+
+input editComponentPageLegendInput {
+  id: ID
+  sectionLegendTitle: String
+  sectionLegendTitle_en: String
+}
+
+input editComponentPageLinkInput {
+  id: ID
+  label: String
+  label_en: String
+  path: String
+}
+
+input editComponentPageSubtitleInput {
+  id: ID
+  sectionSubTitle: String
+  sectionSubTitle_en: String
+}
+
+input editComponentPageTitleInput {
+  id: ID
+  sectionTitle: String
+  sectionTitle_en: String
+}
+
+input editComponentQualityAssuranceOfferGuaranteesQaInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  infoArea: [editComponentPageCardInfoWithIconInput]
+}
+
+input editComponentQualityAssuranceQaDescriptionInput {
+  id: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  subtitle: editComponentPageSubtitleInput
+}
+
+input editComponentQualityAssuranceQaOfferInput {
+  id: ID
+  title: editComponentPageTitleInput
+  qaOfferCarousel: editComponentPageCarouselWithImagesEnInput
+}
+
+input editComponentQualityAssuranceSuccessStoriesQaInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  successStoriesQACarousel: editComponentPageCarouselWithImagesEnInput
+}
+
+input editComponentRobotBenefitInput {
+  id: ID
+  sectionIcon: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  InfoArea: [editComponentPageCardInfoWithIconInput]
+}
+
+input editComponentRobotFormInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  subtitle: editComponentPageSubtitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentRobotFuntioningInput {
+  id: ID
+  header: editComponentRobotRobotDescriptionInput
+  title: editComponentPageTitleInput
+  urlYoutube: String
+  introductoryText: editComponentPageIntroductoryTextInput
+}
+
+input editComponentRobotPlansForYouInput {
+  id: ID
+  sectionIcon: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  cardsPlans: [editComponentPageCardPlansForYouInput]
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentRobotRobotDescriptionInput {
+  id: ID
+  sectionIcon: ID
+  introductoryText: editComponentPageIntroductoryTextInput
+}
+
+input editComponentSoftwareFactoryBenefitInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  benefitsNavPills: [editComponentSoftwareFactoryBenefitsNavPillInput]
+}
+
+input editComponentSoftwareFactoryBenefitsNavPillInput {
+  id: ID
+  tabIcon: String
+  introductoryText: editComponentPageIntroductoryTextInput
+}
+
+input editComponentSoftwareFactoryDeliverableInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+}
+
+input editComponentSoftwareFactoryDeliverablesCardInput {
+  id: ID
+  front: editComponentHomeFrontInput
+  back: editComponentHomeBackInput
+}
+
+input editComponentSoftwareFactoryDigitalServiceInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentSoftwareFactoryFactoryServiceInput {
+  id: ID
+  title: editComponentPageTitleInput
+  factoryServicesCarousel: editComponentPageCarouselWithImagesEnInput
+}
+
+input editComponentSoftwareFactoryTimeMarketInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+}
+
+input editComponentSpecializedServicesContactusInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentSpecializedServicesRecruitBestInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  carousel: editComponentPageCarouselWithImagesEnInput
+}
+
+input editComponentSpecializedServicesRequestQuoteInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  actionButton: editComponentPageActionButtonInput
+  checkboxTitle: String
+  checkboxTitle_en: String
+}
+
+input editComponentSpecializedServicesTalentAttractionCardInput {
+  id: ID
+  front: editComponentHomeFrontInput
+  back: editComponentHomeBackInput
+}
+
+input editComponentSpecializedServicesTalentAttractionInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  talentAttractionTitle: editComponentPageTitleInput
+  contactus: editComponentSpecializedServicesContactusInput
+}
+
+input editComponentSpecializedServicesTalentScoutInput {
+  id: ID
+  talentScoutTitle: String
+  talentScoutTitle_en: String
+  talentScoutIntroduction: String
+  talentScoutIntroduction_en: String
+  talentScoutSearchField: String
+  talentScoutSearchField_en: String
+}
+
+input editComponentTechnologyConsultingConsultingOptionInput {
+  id: ID
+  title: editComponentPageTitleInput
+  carousel: editComponentPageCarouselWithImagesEnInput
+}
+
+input editComponentTechnologyConsultingOfferGuaranteeInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  infoArea: [editComponentPageCardInfoWithIconInput]
+}
+
+input editComponentTechnologyConsultingSuccessStoryInput {
+  id: ID
+  sectionIcon: ID
+  title: editComponentPageTitleInput
+  successStoriesCarousel: editComponentPageCarouselWithImagesEnInput
+}
+
+input editComponentTechnologyConsultingTaskOptimizationCardInput {
+  id: ID
+  front: editComponentHomeFrontInput
+  back: editComponentHomeBackInput
+}
+
+input editComponentTechnologyConsultingTaskOptimizationInput {
+  id: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  subtitle: editComponentPageSubtitleInput
+  titleType: editComponentPageTitleInput
+}
+
+input editComponentVacanciesiwBenefitInput {
+  id: ID
+  sectionIcon: ID
+  legend: editComponentPageLegendInput
+  title: editComponentPageTitleInput
+  InfoArea: [editComponentPageCardInfoWithIconInput]
+}
+
+input editComponentVacanciesiwFormInput {
+  id: ID
+  title: editComponentPageTitleInput
+  subtitle: editComponentPageSubtitleInput
+  actionButton: editComponentPageActionButtonInput
+}
+
+input editComponentVacanciesiwSearchInput {
+  id: ID
+  title: editComponentPageTitleInput
+  introductoryText: editComponentPageIntroductoryTextInput
+  searchField: String
+  searchField_en: String
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editHomeInput {
+  header: editComponentPageCarouselWithCaptionInput
+  aboutUs: editComponentHomeAboutUsInput
+  ourExperience: editComponentHomeOurExperienceInput
+  businessPartners: editComponentHomeBusinessPartnerInput
+  businessPartnersCards: [editComponentHomeBusinessCardInput]
+  theyTrust: editComponentHomeTheyTrustInput
+  technologyImplementation: editComponentHomeTechnologyImplementationInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editJoinUsInput {
+  header: editComponentPageImageWithCapitionInput
+  joinTeam: editComponentJoinusJoinTeamInput
+  sendCV: editComponentJoinusSendCvInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editNavigationMenuInput {
+  body: [NavigationMenuBodyDynamicZoneInput!]
+  created_by: ID
+  updated_by: ID
+}
+
+input editQualityAssuranceInput {
+  header: editComponentPageImageWithCapitionInput
+  qaDescription: editComponentQualityAssuranceQaDescriptionInput
+  qaOffer: editComponentQualityAssuranceQaOfferInput
+  offerGuaranteesQA: editComponentQualityAssuranceOfferGuaranteesQaInput
+  successStoriesQA: editComponentQualityAssuranceSuccessStoriesQaInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editRobotInput {
+  header: editComponentPageImageWithCapitionInput
+  funtioning: editComponentRobotFuntioningInput
+  benefits: editComponentRobotBenefitInput
+  form: editComponentRobotFormInput
+  plansForYou: editComponentRobotPlansForYouInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editSoftwareFactoryInput {
+  header: editComponentPageImageWithCapitionInput
+  timeMarket: editComponentSoftwareFactoryTimeMarketInput
+  factoryServices: editComponentSoftwareFactoryFactoryServiceInput
+  benefits: editComponentSoftwareFactoryBenefitInput
+  deliverables: editComponentSoftwareFactoryDeliverableInput
+  deliverablesCards: [editComponentSoftwareFactoryDeliverablesCardInput]
+  digitalServices: editComponentSoftwareFactoryDigitalServiceInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editSpecializedServiceInput {
+  header: editComponentPageHeaderInput
+  talentScout: editComponentSpecializedServicesTalentScoutInput
+  talentAttraction: editComponentSpecializedServicesTalentAttractionInput
+  talentAttractionCards: [editComponentSpecializedServicesTalentAttractionCardInput]
+  recruitBest: editComponentSpecializedServicesRecruitBestInput
+  requestQuote: editComponentSpecializedServicesRequestQuoteInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editSpecialtyInput {
+  name: String
+  name_en: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editTagInput {
+  name: String
+  name_en: String
+  vacancies: [ID]
+  articles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editTagsBlogInput {
+  name: String
+  name_en: String
+  articles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editTeamInput {
+  name: String
+  lastName: String
+  linkedin: String
+  facebook: String
+  description: String
+  description_en: String
+  specialty: ID
+  shereImage: ID
+  articles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editTechnologyConsultingInput {
+  header: editComponentPageImageWithCapitionInput
+  taskOptimization: editComponentTechnologyConsultingTaskOptimizationInput
+  taskOptimizationCards: [editComponentTechnologyConsultingTaskOptimizationCardInput]
+  offerGuarantees: editComponentTechnologyConsultingOfferGuaranteeInput
+  consultingOptions: editComponentTechnologyConsultingConsultingOptionInput
+  successStories: editComponentTechnologyConsultingSuccessStoryInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editVacanciesIwInput {
+  header: editComponentPageImageWithCapitionInput
+  search: editComponentVacanciesiwSearchInput
+  form: editComponentVacanciesiwFormInput
+  created_by: ID
+  updated_by: ID
+}
+
+input editVacancyInput {
+  title: String
+  title_en: String
+  age: String
+  age_en: String
+  gender: ENUM_VACANCIES_GENDER
+  gender_en: ENUM_VACANCIES_GENDER_EN
+  scholarship: String
+  scholarship_en: String
+  workZone: String
+  workZone_en: String
+  specificRequirements: String
+  specificRequirements_en: String
+  tags: [ID]
+  contact: String
+  created_by: ID
+  updated_by: ID
+}
+
+type Email {
+  data: JSON
+  content: String
+  filename: String
+  page: String
+}
+
+input EmailInput {
+  data: JSON
+  content: String
+  filename: String
+  page: String
+}
+
+enum ENUM_VACANCIES_GENDER {
+  Masculino
+  Femenino
+  Indistinto
+}
+
+enum ENUM_VACANCIES_GENDER_EN {
+  male
+  female
+  Indistinct
+}
+
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+type Home {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageCarouselWithCaption
+  aboutUs: ComponentHomeAboutUs
+  ourExperience: ComponentHomeOurExperience
+  businessPartners: ComponentHomeBusinessPartners
+  businessPartnersCards: [ComponentHomeBusinessCard]
+  theyTrust: ComponentHomeTheyTrust
+  technologyImplementation: ComponentHomeTechnologyImplementation
+}
+
+input HomeInput {
+  header: ComponentPageCarouselWithCaptionInput!
+  aboutUs: ComponentHomeAboutUsInput!
+  ourExperience: ComponentHomeOurExperienceInput
+  businessPartners: ComponentHomeBusinessPartnerInput
+  businessPartnersCards: [ComponentHomeBusinessCardInput]
+  theyTrust: ComponentHomeTheyTrustInput
+  technologyImplementation: ComponentHomeTechnologyImplementationInput
+  created_by: ID
+  updated_by: ID
+}
+
+input InputID {
+  id: ID!
+}
+
+type JoinUs {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  joinTeam: ComponentJoinusJoinTeam
+  sendCV: ComponentJoinusSendCv
+}
+
+input JoinUsInput {
+  header: ComponentPageImageWithCapitionInput
+  joinTeam: ComponentJoinusJoinTeamInput
+  sendCV: ComponentJoinusSendCvInput
+  created_by: ID
+  updated_by: ID
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+union Morph = Email | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Articles | ArticlesConnection | ArticlesAggregator | ArticlesGroupBy | ArticlesConnectionId | ArticlesConnectionCreated_at | ArticlesConnectionUpdated_at | ArticlesConnectionSeo | ArticlesConnectionContent | ArticlesConnectionContent_en | ArticlesConnectionCategory | ArticlesConnectionUser | createArticlePayload | updateArticlePayload | deleteArticlePayload | Blog | updateBlogPayload | deleteBlogPayload | Categories | CategoriesConnection | CategoriesAggregator | CategoriesGroupBy | CategoriesConnectionId | CategoriesConnectionCreated_at | CategoriesConnectionUpdated_at | CategoriesConnectionName | CategoriesConnectionName_en | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Home | updateHomePayload | deleteHomePayload | JoinUs | updateJoinUsPayload | deleteJoinUsPayload | NavigationMenu | updateNavigationMenuPayload | deleteNavigationMenuPayload | QualityAssurance | updateQualityAssurancePayload | deleteQualityAssurancePayload | Robot | updateRobotPayload | deleteRobotPayload | SoftwareFactory | updateSoftwareFactoryPayload | deleteSoftwareFactoryPayload | SpecializedServices | updateSpecializedServicePayload | deleteSpecializedServicePayload | Specialties | SpecialtiesConnection | SpecialtiesAggregator | SpecialtiesGroupBy | SpecialtiesConnectionId | SpecialtiesConnectionCreated_at | SpecialtiesConnectionUpdated_at | SpecialtiesConnectionName | SpecialtiesConnectionName_en | createSpecialtyPayload | updateSpecialtyPayload | deleteSpecialtyPayload | TagsBlog | TagsBlogConnection | TagsBlogAggregator | TagsBlogGroupBy | TagsBlogConnectionId | TagsBlogConnectionCreated_at | TagsBlogConnectionUpdated_at | TagsBlogConnectionName | TagsBlogConnectionName_en | createTagsBlogPayload | updateTagsBlogPayload | deleteTagsBlogPayload | Tags | TagsConnection | TagsAggregator | TagsGroupBy | TagsConnectionId | TagsConnectionCreated_at | TagsConnectionUpdated_at | TagsConnectionName | TagsConnectionName_en | createTagPayload | updateTagPayload | deleteTagPayload | Teams | TeamsConnection | TeamsAggregator | TeamsGroupBy | TeamsConnectionId | TeamsConnectionCreated_at | TeamsConnectionUpdated_at | TeamsConnectionName | TeamsConnectionLastName | TeamsConnectionLinkedin | TeamsConnectionFacebook | TeamsConnectionDescription | TeamsConnectionDescription_en | TeamsConnectionSpecialty | TeamsConnectionShereImage | createTeamPayload | updateTeamPayload | deleteTeamPayload | TechnologyConsulting | updateTechnologyConsultingPayload | deleteTechnologyConsultingPayload | VacanciesIw | updateVacanciesIwPayload | deleteVacanciesIwPayload | Vacancies | VacanciesConnection | VacanciesAggregator | VacanciesGroupBy | VacanciesConnectionId | VacanciesConnectionCreated_at | VacanciesConnectionUpdated_at | VacanciesConnectionTitle | VacanciesConnectionTitle_en | VacanciesConnectionAge | VacanciesConnectionAge_en | VacanciesConnectionGender | VacanciesConnectionGender_en | VacanciesConnectionScholarship | VacanciesConnectionScholarship_en | VacanciesConnectionWorkZone | VacanciesConnectionWorkZone_en | VacanciesConnectionSpecificRequirements | VacanciesConnectionSpecificRequirements_en | VacanciesConnectionContact | createVacancyPayload | updateVacancyPayload | deleteVacancyPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentBlogBannersBlog | ComponentBlogSeo | ComponentHomeAboutUs | ComponentHomeBackCardListItems | ComponentHomeBack | ComponentHomeBusinessCard | ComponentHomeBusinessListItems | ComponentHomeBusinessPartners | ComponentHomeFront | ComponentHomeOurExperience | ComponentHomeTechnologyImplementation | ComponentHomeTheyTrust | ComponentJoinusCardVacant | ComponentJoinusJoinTeam | ComponentJoinusSendCv | ComponentJoinusTags | ComponentPageActionButton | ComponentPageCardInfoWithIcon | ComponentPageCardPlansForYou | ComponentPageCarouselWithCaption | ComponentPageCarouselWithImagesEn | ComponentPageDropdown | ComponentPageHeader | ComponentPageImageWithCapition | ComponentPageIntroductoryText | ComponentPageLegend | ComponentPageLink | ComponentPageSubtitle | ComponentPageTitle | ComponentQualityAssuranceOfferGuaranteesQa | ComponentQualityAssuranceQaDescription | ComponentQualityAssuranceQaOffer | ComponentQualityAssuranceSuccessStoriesQa | ComponentRobotBenefits | ComponentRobotForm | ComponentRobotFuntioning | ComponentRobotPlansForYou | ComponentRobotRobotDescription | ComponentSoftwareFactoryBenefitsNavPills | ComponentSoftwareFactoryBenefits | ComponentSoftwareFactoryDeliverablesCards | ComponentSoftwareFactoryDeliverables | ComponentSoftwareFactoryDigitalServices | ComponentSoftwareFactoryFactoryServices | ComponentSoftwareFactoryTimeMarket | ComponentSpecializedServicesContactus | ComponentSpecializedServicesRecruitBest | ComponentSpecializedServicesRequestQuote | ComponentSpecializedServicesTalentAttractionCards | ComponentSpecializedServicesTalentAttraction | ComponentSpecializedServicesTalentScout | ComponentTechnologyConsultingConsultingOptions | ComponentTechnologyConsultingOfferGuarantees | ComponentTechnologyConsultingSuccessStories | ComponentTechnologyConsultingTaskOptimizationCards | ComponentTechnologyConsultingTaskOptimization | ComponentVacanciesiwBenefits | ComponentVacanciesiwForm | ComponentVacanciesiwSearch
+
+type Mutation {
+  createArticle(input: createArticleInput): createArticlePayload
+  updateArticle(input: updateArticleInput): updateArticlePayload
+  deleteArticle(input: deleteArticleInput): deleteArticlePayload
+  updateBlog(input: updateBlogInput): updateBlogPayload
+  deleteBlog: deleteBlogPayload
+  createCategory(input: createCategoryInput): createCategoryPayload
+  updateCategory(input: updateCategoryInput): updateCategoryPayload
+  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  updateHome(input: updateHomeInput): updateHomePayload
+  deleteHome: deleteHomePayload
+  updateJoinUs(input: updateJoinUsInput): updateJoinUsPayload
+  deleteJoinUs: deleteJoinUsPayload
+  updateNavigationMenu(input: updateNavigationMenuInput): updateNavigationMenuPayload
+  deleteNavigationMenu: deleteNavigationMenuPayload
+  updateQualityAssurance(input: updateQualityAssuranceInput): updateQualityAssurancePayload
+  deleteQualityAssurance: deleteQualityAssurancePayload
+  updateRobot(input: updateRobotInput): updateRobotPayload
+  deleteRobot: deleteRobotPayload
+  updateSoftwareFactory(input: updateSoftwareFactoryInput): updateSoftwareFactoryPayload
+  deleteSoftwareFactory: deleteSoftwareFactoryPayload
+  updateSpecializedService(input: updateSpecializedServiceInput): updateSpecializedServicePayload
+  deleteSpecializedService: deleteSpecializedServicePayload
+  createSpecialty(input: createSpecialtyInput): createSpecialtyPayload
+  updateSpecialty(input: updateSpecialtyInput): updateSpecialtyPayload
+  deleteSpecialty(input: deleteSpecialtyInput): deleteSpecialtyPayload
+  createTagsBlog(input: createTagsBlogInput): createTagsBlogPayload
+  updateTagsBlog(input: updateTagsBlogInput): updateTagsBlogPayload
+  deleteTagsBlog(input: deleteTagsBlogInput): deleteTagsBlogPayload
+  createTag(input: createTagInput): createTagPayload
+  updateTag(input: updateTagInput): updateTagPayload
+  deleteTag(input: deleteTagInput): deleteTagPayload
+  createTeam(input: createTeamInput): createTeamPayload
+  updateTeam(input: updateTeamInput): updateTeamPayload
+  deleteTeam(input: deleteTeamInput): deleteTeamPayload
+  updateTechnologyConsulting(input: updateTechnologyConsultingInput): updateTechnologyConsultingPayload
+  deleteTechnologyConsulting: deleteTechnologyConsultingPayload
+  updateVacanciesIw(input: updateVacanciesIwInput): updateVacanciesIwPayload
+  deleteVacanciesIw: deleteVacanciesIwPayload
+  createVacancy(input: createVacancyInput): createVacancyPayload
+  updateVacancy(input: updateVacancyInput): updateVacancyPayload
+  deleteVacancy(input: deleteVacancyInput): deleteVacancyPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  sendEmail(input: EmailInput): Email
+  upload(refId: ID, ref: String, field: String, source: String, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+type NavigationMenu {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  body: [NavigationMenuBodyDynamicZone]
+}
+
+union NavigationMenuBodyDynamicZone = ComponentPageLink | ComponentPageDropdown
+
+"""Input type for dynamic zone body of NavigationMenu"""
+scalar NavigationMenuBodyDynamicZoneInput
+
+input NavigationMenuInput {
+  body: [NavigationMenuBodyDynamicZoneInput!]
+  created_by: ID
+  updated_by: ID
+}
+
+type QualityAssurance {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  qaDescription: ComponentQualityAssuranceQaDescription
+  qaOffer: ComponentQualityAssuranceQaOffer
+  offerGuaranteesQA: ComponentQualityAssuranceOfferGuaranteesQa
+  successStoriesQA: ComponentQualityAssuranceSuccessStoriesQa
+}
+
+input QualityAssuranceInput {
+  header: ComponentPageImageWithCapitionInput
+  qaDescription: ComponentQualityAssuranceQaDescriptionInput
+  qaOffer: ComponentQualityAssuranceQaOfferInput
+  offerGuaranteesQA: ComponentQualityAssuranceOfferGuaranteesQaInput
+  successStoriesQA: ComponentQualityAssuranceSuccessStoriesQaInput
+  created_by: ID
+  updated_by: ID
+}
+
+type Query {
+  article(id: ID!): Articles
+  articles(sort: String, limit: Int, start: Int, where: JSON): [Articles]
+  articlesConnection(sort: String, limit: Int, start: Int, where: JSON): ArticlesConnection
+  blog: Blog
+  category(id: ID!): Categories
+  categories(sort: String, limit: Int, start: Int, where: JSON): [Categories]
+  categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoriesConnection
+  home: Home
+  joinUs: JoinUs
+  navigationMenu: NavigationMenu
+  qualityAssurance: QualityAssurance
+  robot: Robot
+  softwareFactory: SoftwareFactory
+  specializedService: SpecializedServices
+  specialty(id: ID!): Specialties
+  specialties(sort: String, limit: Int, start: Int, where: JSON): [Specialties]
+  specialtiesConnection(sort: String, limit: Int, start: Int, where: JSON): SpecialtiesConnection
+  tagsBlog(id: ID!): TagsBlog
+  tagsBlogs(sort: String, limit: Int, start: Int, where: JSON): [TagsBlog]
+  tagsBlogsConnection(sort: String, limit: Int, start: Int, where: JSON): TagsBlogConnection
+  tag(id: ID!): Tags
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tags]
+  tagsConnection(sort: String, limit: Int, start: Int, where: JSON): TagsConnection
+  team(id: ID!): Teams
+  teams(sort: String, limit: Int, start: Int, where: JSON): [Teams]
+  teamsConnection(sort: String, limit: Int, start: Int, where: JSON): TeamsConnection
+  technologyConsulting: TechnologyConsulting
+  vacanciesIw: VacanciesIw
+  vacancy(id: ID!): Vacancies
+  vacancies(sort: String, limit: Int, start: Int, where: JSON): [Vacancies]
+  vacanciesConnection(sort: String, limit: Int, start: Int, where: JSON): VacanciesConnection
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  articlesCount(where: JSON): Int!
+  vacanciesCount(where: JSON): Int!
+  me: UsersPermissionsMe
+}
+
+type Robot {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  funtioning: ComponentRobotFuntioning
+  benefits: ComponentRobotBenefits
+  form: ComponentRobotForm
+  plansForYou: ComponentRobotPlansForYou
+}
+
+input RobotInput {
+  header: ComponentPageImageWithCapitionInput
+  funtioning: ComponentRobotFuntioningInput
+  benefits: ComponentRobotBenefitInput
+  form: ComponentRobotFormInput
+  plansForYou: ComponentRobotPlansForYouInput
+  created_by: ID
+  updated_by: ID
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+type SoftwareFactory {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  timeMarket: ComponentSoftwareFactoryTimeMarket
+  factoryServices: ComponentSoftwareFactoryFactoryServices
+  benefits: ComponentSoftwareFactoryBenefits
+  deliverables: ComponentSoftwareFactoryDeliverables
+  deliverablesCards: [ComponentSoftwareFactoryDeliverablesCards]
+  digitalServices: ComponentSoftwareFactoryDigitalServices
+}
+
+input SoftwareFactoryInput {
+  header: ComponentPageImageWithCapitionInput
+  timeMarket: ComponentSoftwareFactoryTimeMarketInput
+  factoryServices: ComponentSoftwareFactoryFactoryServiceInput
+  benefits: ComponentSoftwareFactoryBenefitInput
+  deliverables: ComponentSoftwareFactoryDeliverableInput
+  deliverablesCards: [ComponentSoftwareFactoryDeliverablesCardInput]
+  digitalServices: ComponentSoftwareFactoryDigitalServiceInput
+  created_by: ID
+  updated_by: ID
+}
+
+input SpecializedServiceInput {
+  header: ComponentPageHeaderInput
+  talentScout: ComponentSpecializedServicesTalentScoutInput
+  talentAttraction: ComponentSpecializedServicesTalentAttractionInput
+  talentAttractionCards: [ComponentSpecializedServicesTalentAttractionCardInput]
+  recruitBest: ComponentSpecializedServicesRecruitBestInput
+  requestQuote: ComponentSpecializedServicesRequestQuoteInput
+  created_by: ID
+  updated_by: ID
+}
+
+type SpecializedServices {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageHeader
+  talentScout: ComponentSpecializedServicesTalentScout
+  talentAttraction: ComponentSpecializedServicesTalentAttraction
+  talentAttractionCards: [ComponentSpecializedServicesTalentAttractionCards]
+  recruitBest: ComponentSpecializedServicesRecruitBest
+  requestQuote: ComponentSpecializedServicesRequestQuote
+}
+
+type Specialties {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  name_en: String
+}
+
+type SpecialtiesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SpecialtiesConnection {
+  values: [Specialties]
+  groupBy: SpecialtiesGroupBy
+  aggregate: SpecialtiesAggregator
+}
+
+type SpecialtiesConnectionCreated_at {
+  key: DateTime
+  connection: SpecialtiesConnection
+}
+
+type SpecialtiesConnectionId {
+  key: ID
+  connection: SpecialtiesConnection
+}
+
+type SpecialtiesConnectionName {
+  key: String
+  connection: SpecialtiesConnection
+}
+
+type SpecialtiesConnectionName_en {
+  key: String
+  connection: SpecialtiesConnection
+}
+
+type SpecialtiesConnectionUpdated_at {
+  key: DateTime
+  connection: SpecialtiesConnection
+}
+
+type SpecialtiesGroupBy {
+  id: [SpecialtiesConnectionId]
+  created_at: [SpecialtiesConnectionCreated_at]
+  updated_at: [SpecialtiesConnectionUpdated_at]
+  name: [SpecialtiesConnectionName]
+  name_en: [SpecialtiesConnectionName_en]
+}
+
+input SpecialtyInput {
+  name: String
+  name_en: String
+  created_by: ID
+  updated_by: ID
+}
+
+input TagInput {
+  name: String
+  name_en: String
+  vacancies: [ID]
+  articles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+type Tags {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  name_en: String
+  vacancies(sort: String, limit: Int, start: Int, where: JSON): [Vacancies]
+  articles(sort: String, limit: Int, start: Int, where: JSON): [Articles]
+}
+
+type TagsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TagsBlog {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  name_en: String
+  articles(sort: String, limit: Int, start: Int, where: JSON): [Articles]
+}
+
+type TagsBlogAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TagsBlogConnection {
+  values: [TagsBlog]
+  groupBy: TagsBlogGroupBy
+  aggregate: TagsBlogAggregator
+}
+
+type TagsBlogConnectionCreated_at {
+  key: DateTime
+  connection: TagsBlogConnection
+}
+
+type TagsBlogConnectionId {
+  key: ID
+  connection: TagsBlogConnection
+}
+
+type TagsBlogConnectionName {
+  key: String
+  connection: TagsBlogConnection
+}
+
+type TagsBlogConnectionName_en {
+  key: String
+  connection: TagsBlogConnection
+}
+
+type TagsBlogConnectionUpdated_at {
+  key: DateTime
+  connection: TagsBlogConnection
+}
+
+type TagsBlogGroupBy {
+  id: [TagsBlogConnectionId]
+  created_at: [TagsBlogConnectionCreated_at]
+  updated_at: [TagsBlogConnectionUpdated_at]
+  name: [TagsBlogConnectionName]
+  name_en: [TagsBlogConnectionName_en]
+}
+
+input TagsBlogInput {
+  name: String
+  name_en: String
+  articles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+type TagsConnection {
+  values: [Tags]
+  groupBy: TagsGroupBy
+  aggregate: TagsAggregator
+}
+
+type TagsConnectionCreated_at {
+  key: DateTime
+  connection: TagsConnection
+}
+
+type TagsConnectionId {
+  key: ID
+  connection: TagsConnection
+}
+
+type TagsConnectionName {
+  key: String
+  connection: TagsConnection
+}
+
+type TagsConnectionName_en {
+  key: String
+  connection: TagsConnection
+}
+
+type TagsConnectionUpdated_at {
+  key: DateTime
+  connection: TagsConnection
+}
+
+type TagsGroupBy {
+  id: [TagsConnectionId]
+  created_at: [TagsConnectionCreated_at]
+  updated_at: [TagsConnectionUpdated_at]
+  name: [TagsConnectionName]
+  name_en: [TagsConnectionName_en]
+}
+
+input TeamInput {
+  name: String
+  lastName: String
+  linkedin: String
+  facebook: String
+  description: String
+  description_en: String
+  specialty: ID
+  shereImage: ID
+  articles: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+type Teams {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  lastName: String
+  linkedin: String
+  facebook: String
+  description: String
+  description_en: String
+  specialty: Specialties
+  shereImage: UploadFile
+  articles(sort: String, limit: Int, start: Int, where: JSON): [Articles]
+}
+
+type TeamsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type TeamsConnection {
+  values: [Teams]
+  groupBy: TeamsGroupBy
+  aggregate: TeamsAggregator
+}
+
+type TeamsConnectionCreated_at {
+  key: DateTime
+  connection: TeamsConnection
+}
+
+type TeamsConnectionDescription {
+  key: String
+  connection: TeamsConnection
+}
+
+type TeamsConnectionDescription_en {
+  key: String
+  connection: TeamsConnection
+}
+
+type TeamsConnectionFacebook {
+  key: String
+  connection: TeamsConnection
+}
+
+type TeamsConnectionId {
+  key: ID
+  connection: TeamsConnection
+}
+
+type TeamsConnectionLastName {
+  key: String
+  connection: TeamsConnection
+}
+
+type TeamsConnectionLinkedin {
+  key: String
+  connection: TeamsConnection
+}
+
+type TeamsConnectionName {
+  key: String
+  connection: TeamsConnection
+}
+
+type TeamsConnectionShereImage {
+  key: ID
+  connection: TeamsConnection
+}
+
+type TeamsConnectionSpecialty {
+  key: ID
+  connection: TeamsConnection
+}
+
+type TeamsConnectionUpdated_at {
+  key: DateTime
+  connection: TeamsConnection
+}
+
+type TeamsGroupBy {
+  id: [TeamsConnectionId]
+  created_at: [TeamsConnectionCreated_at]
+  updated_at: [TeamsConnectionUpdated_at]
+  name: [TeamsConnectionName]
+  lastName: [TeamsConnectionLastName]
+  linkedin: [TeamsConnectionLinkedin]
+  facebook: [TeamsConnectionFacebook]
+  description: [TeamsConnectionDescription]
+  description_en: [TeamsConnectionDescription_en]
+  specialty: [TeamsConnectionSpecialty]
+  shereImage: [TeamsConnectionShereImage]
+}
+
+type TechnologyConsulting {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  taskOptimization: ComponentTechnologyConsultingTaskOptimization
+  taskOptimizationCards: [ComponentTechnologyConsultingTaskOptimizationCards]
+  offerGuarantees: ComponentTechnologyConsultingOfferGuarantees
+  consultingOptions: ComponentTechnologyConsultingConsultingOptions
+  successStories: ComponentTechnologyConsultingSuccessStories
+}
+
+input TechnologyConsultingInput {
+  header: ComponentPageImageWithCapitionInput
+  taskOptimization: ComponentTechnologyConsultingTaskOptimizationInput
+  taskOptimizationCards: [ComponentTechnologyConsultingTaskOptimizationCardInput]
+  offerGuarantees: ComponentTechnologyConsultingOfferGuaranteeInput
+  consultingOptions: ComponentTechnologyConsultingConsultingOptionInput
+  successStories: ComponentTechnologyConsultingSuccessStoryInput
+  created_by: ID
+  updated_by: ID
+}
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+input updateArticleInput {
+  where: InputID
+  data: editArticleInput
+}
+
+type updateArticlePayload {
+  article: Articles
+}
+
+input updateBlogInput {
+  data: editBlogInput
+}
+
+type updateBlogPayload {
+  blog: Blog
+}
+
+input updateCategoryInput {
+  where: InputID
+  data: editCategoryInput
+}
+
+type updateCategoryPayload {
+  category: Categories
+}
+
+input updateHomeInput {
+  data: editHomeInput
+}
+
+type updateHomePayload {
+  home: Home
+}
+
+input updateJoinUsInput {
+  data: editJoinUsInput
+}
+
+type updateJoinUsPayload {
+  joinUs: JoinUs
+}
+
+input updateNavigationMenuInput {
+  data: editNavigationMenuInput
+}
+
+type updateNavigationMenuPayload {
+  navigationMenu: NavigationMenu
+}
+
+input updateQualityAssuranceInput {
+  data: editQualityAssuranceInput
+}
+
+type updateQualityAssurancePayload {
+  qualityAssurance: QualityAssurance
+}
+
+input updateRobotInput {
+  data: editRobotInput
+}
+
+type updateRobotPayload {
+  robot: Robot
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateSoftwareFactoryInput {
+  data: editSoftwareFactoryInput
+}
+
+type updateSoftwareFactoryPayload {
+  softwareFactory: SoftwareFactory
+}
+
+input updateSpecializedServiceInput {
+  data: editSpecializedServiceInput
+}
+
+type updateSpecializedServicePayload {
+  specializedService: SpecializedServices
+}
+
+input updateSpecialtyInput {
+  where: InputID
+  data: editSpecialtyInput
+}
+
+type updateSpecialtyPayload {
+  specialty: Specialties
+}
+
+input updateTagInput {
+  where: InputID
+  data: editTagInput
+}
+
+type updateTagPayload {
+  tag: Tags
+}
+
+input updateTagsBlogInput {
+  where: InputID
+  data: editTagsBlogInput
+}
+
+type updateTagsBlogPayload {
+  tagsBlog: TagsBlog
+}
+
+input updateTeamInput {
+  where: InputID
+  data: editTeamInput
+}
+
+type updateTeamPayload {
+  team: Teams
+}
+
+input updateTechnologyConsultingInput {
+  data: editTechnologyConsultingInput
+}
+
+type updateTechnologyConsultingPayload {
+  technologyConsulting: TechnologyConsulting
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateVacanciesIwInput {
+  data: editVacanciesIwInput
+}
+
+type updateVacanciesIwPayload {
+  vacanciesIw: VacanciesIw
+}
+
+input updateVacancyInput {
+  where: InputID
+  data: editVacancyInput
+}
+
+type updateVacancyPayload {
+  vacancy: Vacancies
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
+
+type Vacancies {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
+  title_en: String
+  age: String
+  age_en: String
+  gender: ENUM_VACANCIES_GENDER
+  gender_en: ENUM_VACANCIES_GENDER_EN
+  scholarship: String
+  scholarship_en: String
+  workZone: String
+  workZone_en: String
+  specificRequirements: String
+  specificRequirements_en: String
+  contact: String
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tags]
+}
+
+type VacanciesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type VacanciesConnection {
+  values: [Vacancies]
+  groupBy: VacanciesGroupBy
+  aggregate: VacanciesAggregator
+}
+
+type VacanciesConnectionAge {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionAge_en {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionContact {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionCreated_at {
+  key: DateTime
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionGender {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionGender_en {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionId {
+  key: ID
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionScholarship {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionScholarship_en {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionSpecificRequirements {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionSpecificRequirements_en {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionTitle {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionTitle_en {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionUpdated_at {
+  key: DateTime
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionWorkZone {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesConnectionWorkZone_en {
+  key: String
+  connection: VacanciesConnection
+}
+
+type VacanciesGroupBy {
+  id: [VacanciesConnectionId]
+  created_at: [VacanciesConnectionCreated_at]
+  updated_at: [VacanciesConnectionUpdated_at]
+  title: [VacanciesConnectionTitle]
+  title_en: [VacanciesConnectionTitle_en]
+  age: [VacanciesConnectionAge]
+  age_en: [VacanciesConnectionAge_en]
+  gender: [VacanciesConnectionGender]
+  gender_en: [VacanciesConnectionGender_en]
+  scholarship: [VacanciesConnectionScholarship]
+  scholarship_en: [VacanciesConnectionScholarship_en]
+  workZone: [VacanciesConnectionWorkZone]
+  workZone_en: [VacanciesConnectionWorkZone_en]
+  specificRequirements: [VacanciesConnectionSpecificRequirements]
+  specificRequirements_en: [VacanciesConnectionSpecificRequirements_en]
+  contact: [VacanciesConnectionContact]
+}
+
+type VacanciesIw {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  header: ComponentPageImageWithCapition
+  search: ComponentVacanciesiwSearch
+  form: ComponentVacanciesiwForm
+}
+
+input VacanciesIwInput {
+  header: ComponentPageImageWithCapitionInput
+  search: ComponentVacanciesiwSearchInput
+  form: ComponentVacanciesiwFormInput
+  created_by: ID
+  updated_by: ID
+}
+
+input VacancyInput {
+  title: String
+  title_en: String
+  age: String
+  age_en: String
+  gender: ENUM_VACANCIES_GENDER
+  gender_en: ENUM_VACANCIES_GENDER_EN
+  scholarship: String
+  scholarship_en: String
+  workZone: String
+  workZone_en: String
+  specificRequirements: String
+  specificRequirements_en: String
+  tags: [ID]
+  contact: String
+  created_by: ID
+  updated_by: ID
+}
