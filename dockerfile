@@ -23,4 +23,4 @@ CMD [ "node",  "server" ]
 
 # REMOVE STEPS
 # docker container rm -f strapi-container
-# docker image rm strapi_image .
+# docker image rm strapi_image
