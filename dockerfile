@@ -1,5 +1,5 @@
 # Install dependencies
-FROM node:lts as dependencies
+FROM node:12 as dependencies
 WORKDIR /strapi
 COPY package*.json ./
 RUN npm install
