@@ -18,8 +18,9 @@ input ArticleInput {
 
 type Articles {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   seo: ComponentBlogSeo
   content: String
   content_en: String
@@ -39,6 +40,11 @@ type ArticlesConnection {
   aggregate: ArticlesAggregator
 }
 
+type ArticlesConnection_id {
+  key: ID
+  connection: ArticlesConnection
+}
+
 type ArticlesConnectionCategory {
   key: ID
   connection: ArticlesConnection
@@ -54,7 +60,7 @@ type ArticlesConnectionContent_en {
   connection: ArticlesConnection
 }
 
-type ArticlesConnectionCreated_at {
+type ArticlesConnectionCreatedAt {
   key: DateTime
   connection: ArticlesConnection
 }
@@ -69,7 +75,7 @@ type ArticlesConnectionSeo {
   connection: ArticlesConnection
 }
 
-type ArticlesConnectionUpdated_at {
+type ArticlesConnectionUpdatedAt {
   key: DateTime
   connection: ArticlesConnection
 }
@@ -81,8 +87,9 @@ type ArticlesConnectionUser {
 
 type ArticlesGroupBy {
   id: [ArticlesConnectionId]
-  created_at: [ArticlesConnectionCreated_at]
-  updated_at: [ArticlesConnectionUpdated_at]
+  _id: [ArticlesConnection_id]
+  createdAt: [ArticlesConnectionCreatedAt]
+  updatedAt: [ArticlesConnectionUpdatedAt]
   seo: [ArticlesConnectionSeo]
   content: [ArticlesConnectionContent]
   content_en: [ArticlesConnectionContent_en]
@@ -92,8 +99,9 @@ type ArticlesGroupBy {
 
 type Blog {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   carouselBlog: ComponentPageCarouselWithCaption
   bannersBlog: ComponentBlogBannersBlog
@@ -109,8 +117,9 @@ input BlogInput {
 
 type Categories {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
   name_en: String
 }
@@ -126,7 +135,12 @@ type CategoriesConnection {
   aggregate: CategoriesAggregator
 }
 
-type CategoriesConnectionCreated_at {
+type CategoriesConnection_id {
+  key: ID
+  connection: CategoriesConnection
+}
+
+type CategoriesConnectionCreatedAt {
   key: DateTime
   connection: CategoriesConnection
 }
@@ -146,15 +160,16 @@ type CategoriesConnectionName_en {
   connection: CategoriesConnection
 }
 
-type CategoriesConnectionUpdated_at {
+type CategoriesConnectionUpdatedAt {
   key: DateTime
   connection: CategoriesConnection
 }
 
 type CategoriesGroupBy {
   id: [CategoriesConnectionId]
-  created_at: [CategoriesConnectionCreated_at]
-  updated_at: [CategoriesConnectionUpdated_at]
+  _id: [CategoriesConnection_id]
+  createdAt: [CategoriesConnectionCreatedAt]
+  updatedAt: [CategoriesConnectionUpdatedAt]
   name: [CategoriesConnectionName]
   name_en: [CategoriesConnectionName_en]
 }
@@ -168,6 +183,9 @@ input CategoryInput {
 
 type ComponentBlogBannersBlog {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   bannerUp: UploadFile
   bannerDown: UploadFile
 }
@@ -179,6 +197,9 @@ input ComponentBlogBannersBlogInput {
 
 type ComponentBlogSeo {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   shareImage: UploadFile
   metaTitle: String
   metaTitle_en: String
@@ -196,6 +217,9 @@ input ComponentBlogSeoInput {
 
 type ComponentHomeAboutUs {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   legend: ComponentPageLegend
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
@@ -211,6 +235,9 @@ input ComponentHomeAboutUsInput {
 
 type ComponentHomeBack {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   backCardTitle: String
   backCardTitle_en: String
   backCardListItems: [ComponentHomeBackCardListItems]
@@ -224,6 +251,9 @@ input ComponentHomeBackCardListItemInput {
 
 type ComponentHomeBackCardListItems {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   materialIcon: String
   description: String
   description_en: String
@@ -237,6 +267,9 @@ input ComponentHomeBackInput {
 
 type ComponentHomeBusinessCard {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   front: ComponentHomeFront
   back: ComponentHomeBack
 }
@@ -255,6 +288,9 @@ input ComponentHomeBusinessListItemInput {
 
 type ComponentHomeBusinessListItems {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   materialIcon: String
   description: String
   description_en: String
@@ -270,6 +306,9 @@ input ComponentHomeBusinessPartnerInput {
 
 type ComponentHomeBusinessPartners {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   legend: ComponentPageLegend
   title: ComponentPageTitle
@@ -278,6 +317,9 @@ type ComponentHomeBusinessPartners {
 
 type ComponentHomeFront {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   frontCardTitle: String
   frontCardTitle_en: String
   brandImage: UploadFile
@@ -303,6 +345,9 @@ input ComponentHomeFrontInput {
 
 type ComponentHomeOurExperience {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   underlinedTitle: String
   underlinedTitle_en: String
   introductoryText: String
@@ -326,6 +371,9 @@ input ComponentHomeOurExperienceInput {
 
 type ComponentHomeTechnologyImplementation {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   subtitle: ComponentPageSubtitle
   scrum: UploadFile
@@ -345,6 +393,9 @@ input ComponentHomeTechnologyImplementationInput {
 
 type ComponentHomeTheyTrust {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   legend: ComponentPageLegend
   title: ComponentPageTitle
@@ -362,6 +413,9 @@ input ComponentHomeTheyTrustInput {
 
 type ComponentJoinusCardVacant {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   age: String
   age_en: String
   sex: String
@@ -397,6 +451,9 @@ input ComponentJoinusCardVacantInput {
 
 type ComponentJoinusJoinTeam {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
 }
@@ -408,6 +465,9 @@ input ComponentJoinusJoinTeamInput {
 
 type ComponentJoinusSendCv {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   underlinedTitle: String
   underlinedTitle_en: String
   introductoryText: String
@@ -430,12 +490,18 @@ input ComponentJoinusTagInput {
 
 type ComponentJoinusTags {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
   name_en: String
 }
 
 type ComponentPageActionButton {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   label: String
   label_en: String
 }
@@ -447,6 +513,9 @@ input ComponentPageActionButtonInput {
 
 type ComponentPageCardInfoWithIcon {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: String
   title_en: String
@@ -464,6 +533,9 @@ input ComponentPageCardInfoWithIconInput {
 
 type ComponentPageCardPlansForYou {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionTitle: String
   sectionTitle_en: String
   sectionSubTitle: String
@@ -483,6 +555,9 @@ input ComponentPageCardPlansForYouInput {
 
 type ComponentPageCarouselWithCaption {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   caption: String
   caption_en: String
   large_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
@@ -500,6 +575,9 @@ input ComponentPageCarouselWithCaptionInput {
 
 type ComponentPageCarouselWithImagesEn {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   large_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   large_images_en(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   medium_images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
@@ -519,6 +597,9 @@ input ComponentPageCarouselWithImagesEnInput {
 
 type ComponentPageDropdown {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   topLabel: String
   topLabel_en: String
   nestedLinks: [ComponentPageLink]
@@ -532,6 +613,9 @@ input ComponentPageDropdownInput {
 
 type ComponentPageHeader {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   large_image: UploadFile
   medium_image: UploadFile
   small_image: UploadFile
@@ -549,6 +633,9 @@ input ComponentPageHeaderInput {
 
 type ComponentPageImageWithCapition {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   large_image: UploadFile
   title: String
   title_en: String
@@ -566,6 +653,9 @@ input ComponentPageImageWithCapitionInput {
 
 type ComponentPageIntroductoryText {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   introductoryText: String
   introductoryText_en: String
 }
@@ -577,6 +667,9 @@ input ComponentPageIntroductoryTextInput {
 
 type ComponentPageLegend {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionLegendTitle: String
   sectionLegendTitle_en: String
 }
@@ -588,6 +681,9 @@ input ComponentPageLegendInput {
 
 type ComponentPageLink {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   label: String
   label_en: String
   path: String
@@ -601,6 +697,9 @@ input ComponentPageLinkInput {
 
 type ComponentPageSubtitle {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionSubTitle: String
   sectionSubTitle_en: String
 }
@@ -612,6 +711,9 @@ input ComponentPageSubtitleInput {
 
 type ComponentPageTitle {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionTitle: String
   sectionTitle_en: String
 }
@@ -623,6 +725,9 @@ input ComponentPageTitleInput {
 
 type ComponentQualityAssuranceOfferGuaranteesQa {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   infoArea: [ComponentPageCardInfoWithIcon]
@@ -636,6 +741,9 @@ input ComponentQualityAssuranceOfferGuaranteesQaInput {
 
 type ComponentQualityAssuranceQaDescription {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   legend: ComponentPageLegend
   title: ComponentPageTitle
   subtitle: ComponentPageSubtitle
@@ -649,6 +757,9 @@ input ComponentQualityAssuranceQaDescriptionInput {
 
 type ComponentQualityAssuranceQaOffer {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   qaOfferCarousel: ComponentPageCarouselWithImagesEn
 }
@@ -660,6 +771,9 @@ input ComponentQualityAssuranceQaOfferInput {
 
 type ComponentQualityAssuranceSuccessStoriesQa {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   successStoriesQACarousel: ComponentPageCarouselWithImagesEn
@@ -680,6 +794,9 @@ input ComponentRobotBenefitInput {
 
 type ComponentRobotBenefits {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   legend: ComponentPageLegend
   title: ComponentPageTitle
@@ -688,6 +805,9 @@ type ComponentRobotBenefits {
 
 type ComponentRobotForm {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   subtitle: ComponentPageSubtitle
@@ -705,6 +825,9 @@ input ComponentRobotFormInput {
 
 type ComponentRobotFuntioning {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentRobotRobotDescription
   title: ComponentPageTitle
   urlYoutube: String
@@ -720,6 +843,9 @@ input ComponentRobotFuntioningInput {
 
 type ComponentRobotPlansForYou {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   legend: ComponentPageLegend
   title: ComponentPageTitle
@@ -737,6 +863,9 @@ input ComponentRobotPlansForYouInput {
 
 type ComponentRobotRobotDescription {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   introductoryText: ComponentPageIntroductoryText
 }
@@ -754,6 +883,9 @@ input ComponentSoftwareFactoryBenefitInput {
 
 type ComponentSoftwareFactoryBenefits {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   benefitsNavPills: [ComponentSoftwareFactoryBenefitsNavPills]
@@ -766,6 +898,9 @@ input ComponentSoftwareFactoryBenefitsNavPillInput {
 
 type ComponentSoftwareFactoryBenefitsNavPills {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   tabIcon: String
   introductoryText: ComponentPageIntroductoryText
 }
@@ -777,6 +912,9 @@ input ComponentSoftwareFactoryDeliverableInput {
 
 type ComponentSoftwareFactoryDeliverables {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
 }
@@ -788,6 +926,9 @@ input ComponentSoftwareFactoryDeliverablesCardInput {
 
 type ComponentSoftwareFactoryDeliverablesCards {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   front: ComponentHomeFront
   back: ComponentHomeBack
 }
@@ -800,6 +941,9 @@ input ComponentSoftwareFactoryDigitalServiceInput {
 
 type ComponentSoftwareFactoryDigitalServices {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
   actionButton: ComponentPageActionButton
@@ -812,12 +956,18 @@ input ComponentSoftwareFactoryFactoryServiceInput {
 
 type ComponentSoftwareFactoryFactoryServices {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   factoryServicesCarousel: ComponentPageCarouselWithImagesEn
 }
 
 type ComponentSoftwareFactoryTimeMarket {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
 }
@@ -829,6 +979,9 @@ input ComponentSoftwareFactoryTimeMarketInput {
 
 type ComponentSpecializedServicesContactus {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   actionButton: ComponentPageActionButton
@@ -842,6 +995,9 @@ input ComponentSpecializedServicesContactusInput {
 
 type ComponentSpecializedServicesRecruitBest {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
   carousel: ComponentPageCarouselWithImagesEn
@@ -855,6 +1011,9 @@ input ComponentSpecializedServicesRecruitBestInput {
 
 type ComponentSpecializedServicesRequestQuote {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
   actionButton: ComponentPageActionButton
@@ -872,6 +1031,9 @@ input ComponentSpecializedServicesRequestQuoteInput {
 
 type ComponentSpecializedServicesTalentAttraction {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
   talentAttractionTitle: ComponentPageTitle
@@ -885,6 +1047,9 @@ input ComponentSpecializedServicesTalentAttractionCardInput {
 
 type ComponentSpecializedServicesTalentAttractionCards {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   front: ComponentHomeFront
   back: ComponentHomeBack
 }
@@ -898,6 +1063,9 @@ input ComponentSpecializedServicesTalentAttractionInput {
 
 type ComponentSpecializedServicesTalentScout {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   talentScoutTitle: String
   talentScoutTitle_en: String
   talentScoutIntroduction: String
@@ -922,6 +1090,9 @@ input ComponentTechnologyConsultingConsultingOptionInput {
 
 type ComponentTechnologyConsultingConsultingOptions {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   carousel: ComponentPageCarouselWithImagesEn
 }
@@ -934,6 +1105,9 @@ input ComponentTechnologyConsultingOfferGuaranteeInput {
 
 type ComponentTechnologyConsultingOfferGuarantees {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   infoArea: [ComponentPageCardInfoWithIcon]
@@ -941,6 +1115,9 @@ type ComponentTechnologyConsultingOfferGuarantees {
 
 type ComponentTechnologyConsultingSuccessStories {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   title: ComponentPageTitle
   successStoriesCarousel: ComponentPageCarouselWithImagesEn
@@ -954,6 +1131,9 @@ input ComponentTechnologyConsultingSuccessStoryInput {
 
 type ComponentTechnologyConsultingTaskOptimization {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   legend: ComponentPageLegend
   title: ComponentPageTitle
   subtitle: ComponentPageSubtitle
@@ -967,6 +1147,9 @@ input ComponentTechnologyConsultingTaskOptimizationCardInput {
 
 type ComponentTechnologyConsultingTaskOptimizationCards {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   front: ComponentHomeFront
   back: ComponentHomeBack
 }
@@ -987,6 +1170,9 @@ input ComponentVacanciesiwBenefitInput {
 
 type ComponentVacanciesiwBenefits {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sectionIcon: UploadFile
   legend: ComponentPageLegend
   title: ComponentPageTitle
@@ -995,6 +1181,9 @@ type ComponentVacanciesiwBenefits {
 
 type ComponentVacanciesiwForm {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   subtitle: ComponentPageSubtitle
   actionButton: ComponentPageActionButton
@@ -1008,6 +1197,9 @@ input ComponentVacanciesiwFormInput {
 
 type ComponentVacanciesiwSearch {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: ComponentPageTitle
   introductoryText: ComponentPageIntroductoryText
   searchField: String
@@ -1944,8 +2136,9 @@ input FileInput {
 
 type Home {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageCarouselWithCaption
   aboutUs: ComponentHomeAboutUs
   ourExperience: ComponentHomeOurExperience
@@ -1973,8 +2166,9 @@ input InputID {
 
 type JoinUs {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   joinTeam: ComponentJoinusJoinTeam
   sendCV: ComponentJoinusSendCv
@@ -1996,7 +2190,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = Email | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Articles | ArticlesConnection | ArticlesAggregator | ArticlesGroupBy | ArticlesConnectionId | ArticlesConnectionCreated_at | ArticlesConnectionUpdated_at | ArticlesConnectionSeo | ArticlesConnectionContent | ArticlesConnectionContent_en | ArticlesConnectionCategory | ArticlesConnectionUser | createArticlePayload | updateArticlePayload | deleteArticlePayload | Blog | updateBlogPayload | deleteBlogPayload | Categories | CategoriesConnection | CategoriesAggregator | CategoriesGroupBy | CategoriesConnectionId | CategoriesConnectionCreated_at | CategoriesConnectionUpdated_at | CategoriesConnectionName | CategoriesConnectionName_en | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Home | updateHomePayload | deleteHomePayload | JoinUs | updateJoinUsPayload | deleteJoinUsPayload | NavigationMenu | updateNavigationMenuPayload | deleteNavigationMenuPayload | QualityAssurance | updateQualityAssurancePayload | deleteQualityAssurancePayload | Robot | updateRobotPayload | deleteRobotPayload | SoftwareFactory | updateSoftwareFactoryPayload | deleteSoftwareFactoryPayload | SpecializedServices | updateSpecializedServicePayload | deleteSpecializedServicePayload | Specialties | SpecialtiesConnection | SpecialtiesAggregator | SpecialtiesGroupBy | SpecialtiesConnectionId | SpecialtiesConnectionCreated_at | SpecialtiesConnectionUpdated_at | SpecialtiesConnectionName | SpecialtiesConnectionName_en | createSpecialtyPayload | updateSpecialtyPayload | deleteSpecialtyPayload | TagsBlog | TagsBlogConnection | TagsBlogAggregator | TagsBlogGroupBy | TagsBlogConnectionId | TagsBlogConnectionCreated_at | TagsBlogConnectionUpdated_at | TagsBlogConnectionName | TagsBlogConnectionName_en | createTagsBlogPayload | updateTagsBlogPayload | deleteTagsBlogPayload | Tags | TagsConnection | TagsAggregator | TagsGroupBy | TagsConnectionId | TagsConnectionCreated_at | TagsConnectionUpdated_at | TagsConnectionName | TagsConnectionName_en | createTagPayload | updateTagPayload | deleteTagPayload | Teams | TeamsConnection | TeamsAggregator | TeamsGroupBy | TeamsConnectionId | TeamsConnectionCreated_at | TeamsConnectionUpdated_at | TeamsConnectionName | TeamsConnectionLastName | TeamsConnectionLinkedin | TeamsConnectionFacebook | TeamsConnectionDescription | TeamsConnectionDescription_en | TeamsConnectionSpecialty | TeamsConnectionShereImage | createTeamPayload | updateTeamPayload | deleteTeamPayload | TechnologyConsulting | updateTechnologyConsultingPayload | deleteTechnologyConsultingPayload | VacanciesIw | updateVacanciesIwPayload | deleteVacanciesIwPayload | Vacancies | VacanciesConnection | VacanciesAggregator | VacanciesGroupBy | VacanciesConnectionId | VacanciesConnectionCreated_at | VacanciesConnectionUpdated_at | VacanciesConnectionTitle | VacanciesConnectionTitle_en | VacanciesConnectionAge | VacanciesConnectionAge_en | VacanciesConnectionGender | VacanciesConnectionGender_en | VacanciesConnectionScholarship | VacanciesConnectionScholarship_en | VacanciesConnectionWorkZone | VacanciesConnectionWorkZone_en | VacanciesConnectionSpecificRequirements | VacanciesConnectionSpecificRequirements_en | VacanciesConnectionContact | createVacancyPayload | updateVacancyPayload | deleteVacancyPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentBlogBannersBlog | ComponentBlogSeo | ComponentHomeAboutUs | ComponentHomeBackCardListItems | ComponentHomeBack | ComponentHomeBusinessCard | ComponentHomeBusinessListItems | ComponentHomeBusinessPartners | ComponentHomeFront | ComponentHomeOurExperience | ComponentHomeTechnologyImplementation | ComponentHomeTheyTrust | ComponentJoinusCardVacant | ComponentJoinusJoinTeam | ComponentJoinusSendCv | ComponentJoinusTags | ComponentPageActionButton | ComponentPageCardInfoWithIcon | ComponentPageCardPlansForYou | ComponentPageCarouselWithCaption | ComponentPageCarouselWithImagesEn | ComponentPageDropdown | ComponentPageHeader | ComponentPageImageWithCapition | ComponentPageIntroductoryText | ComponentPageLegend | ComponentPageLink | ComponentPageSubtitle | ComponentPageTitle | ComponentQualityAssuranceOfferGuaranteesQa | ComponentQualityAssuranceQaDescription | ComponentQualityAssuranceQaOffer | ComponentQualityAssuranceSuccessStoriesQa | ComponentRobotBenefits | ComponentRobotForm | ComponentRobotFuntioning | ComponentRobotPlansForYou | ComponentRobotRobotDescription | ComponentSoftwareFactoryBenefitsNavPills | ComponentSoftwareFactoryBenefits | ComponentSoftwareFactoryDeliverablesCards | ComponentSoftwareFactoryDeliverables | ComponentSoftwareFactoryDigitalServices | ComponentSoftwareFactoryFactoryServices | ComponentSoftwareFactoryTimeMarket | ComponentSpecializedServicesContactus | ComponentSpecializedServicesRecruitBest | ComponentSpecializedServicesRequestQuote | ComponentSpecializedServicesTalentAttractionCards | ComponentSpecializedServicesTalentAttraction | ComponentSpecializedServicesTalentScout | ComponentTechnologyConsultingConsultingOptions | ComponentTechnologyConsultingOfferGuarantees | ComponentTechnologyConsultingSuccessStories | ComponentTechnologyConsultingTaskOptimizationCards | ComponentTechnologyConsultingTaskOptimization | ComponentVacanciesiwBenefits | ComponentVacanciesiwForm | ComponentVacanciesiwSearch
+union Morph = Email | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Articles | ArticlesConnection | ArticlesAggregator | ArticlesGroupBy | ArticlesConnectionId | ArticlesConnection_id | ArticlesConnectionCreatedAt | ArticlesConnectionUpdatedAt | ArticlesConnectionSeo | ArticlesConnectionContent | ArticlesConnectionContent_en | ArticlesConnectionCategory | ArticlesConnectionUser | createArticlePayload | updateArticlePayload | deleteArticlePayload | Blog | updateBlogPayload | deleteBlogPayload | Categories | CategoriesConnection | CategoriesAggregator | CategoriesGroupBy | CategoriesConnectionId | CategoriesConnection_id | CategoriesConnectionCreatedAt | CategoriesConnectionUpdatedAt | CategoriesConnectionName | CategoriesConnectionName_en | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Home | updateHomePayload | deleteHomePayload | JoinUs | updateJoinUsPayload | deleteJoinUsPayload | NavigationMenu | updateNavigationMenuPayload | deleteNavigationMenuPayload | QualityAssurance | updateQualityAssurancePayload | deleteQualityAssurancePayload | Robot | updateRobotPayload | deleteRobotPayload | SoftwareFactory | updateSoftwareFactoryPayload | deleteSoftwareFactoryPayload | SpecializedServices | updateSpecializedServicePayload | deleteSpecializedServicePayload | Specialties | SpecialtiesConnection | SpecialtiesAggregator | SpecialtiesGroupBy | SpecialtiesConnectionId | SpecialtiesConnection_id | SpecialtiesConnectionCreatedAt | SpecialtiesConnectionUpdatedAt | SpecialtiesConnectionName | SpecialtiesConnectionName_en | createSpecialtyPayload | updateSpecialtyPayload | deleteSpecialtyPayload | TagsBlog | TagsBlogConnection | TagsBlogAggregator | TagsBlogGroupBy | TagsBlogConnectionId | TagsBlogConnection_id | TagsBlogConnectionCreatedAt | TagsBlogConnectionUpdatedAt | TagsBlogConnectionName | TagsBlogConnectionName_en | createTagsBlogPayload | updateTagsBlogPayload | deleteTagsBlogPayload | Tags | TagsConnection | TagsAggregator | TagsGroupBy | TagsConnectionId | TagsConnection_id | TagsConnectionCreatedAt | TagsConnectionUpdatedAt | TagsConnectionName | TagsConnectionName_en | createTagPayload | updateTagPayload | deleteTagPayload | Teams | TeamsConnection | TeamsAggregator | TeamsGroupBy | TeamsConnectionId | TeamsConnection_id | TeamsConnectionCreatedAt | TeamsConnectionUpdatedAt | TeamsConnectionName | TeamsConnectionLastName | TeamsConnectionLinkedin | TeamsConnectionFacebook | TeamsConnectionDescription | TeamsConnectionDescription_en | TeamsConnectionSpecialty | TeamsConnectionShereImage | createTeamPayload | updateTeamPayload | deleteTeamPayload | TechnologyConsulting | updateTechnologyConsultingPayload | deleteTechnologyConsultingPayload | VacanciesIw | updateVacanciesIwPayload | deleteVacanciesIwPayload | Vacancies | VacanciesConnection | VacanciesAggregator | VacanciesGroupBy | VacanciesConnectionId | VacanciesConnection_id | VacanciesConnectionCreatedAt | VacanciesConnectionUpdatedAt | VacanciesConnectionTitle | VacanciesConnectionTitle_en | VacanciesConnectionAge | VacanciesConnectionAge_en | VacanciesConnectionGender | VacanciesConnectionGender_en | VacanciesConnectionScholarship | VacanciesConnectionScholarship_en | VacanciesConnectionWorkZone | VacanciesConnectionWorkZone_en | VacanciesConnectionSpecificRequirements | VacanciesConnectionSpecificRequirements_en | VacanciesConnectionContact | createVacancyPayload | updateVacancyPayload | deleteVacancyPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionCreatedAt | UsersPermissionsRoleConnectionUpdatedAt | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentBlogBannersBlog | ComponentBlogSeo | ComponentHomeAboutUs | ComponentHomeBackCardListItems | ComponentHomeBack | ComponentHomeBusinessCard | ComponentHomeBusinessListItems | ComponentHomeBusinessPartners | ComponentHomeFront | ComponentHomeOurExperience | ComponentHomeTechnologyImplementation | ComponentHomeTheyTrust | ComponentJoinusCardVacant | ComponentJoinusJoinTeam | ComponentJoinusSendCv | ComponentJoinusTags | ComponentPageActionButton | ComponentPageCardInfoWithIcon | ComponentPageCardPlansForYou | ComponentPageCarouselWithCaption | ComponentPageCarouselWithImagesEn | ComponentPageDropdown | ComponentPageHeader | ComponentPageImageWithCapition | ComponentPageIntroductoryText | ComponentPageLegend | ComponentPageLink | ComponentPageSubtitle | ComponentPageTitle | ComponentQualityAssuranceOfferGuaranteesQa | ComponentQualityAssuranceQaDescription | ComponentQualityAssuranceQaOffer | ComponentQualityAssuranceSuccessStoriesQa | ComponentRobotBenefits | ComponentRobotForm | ComponentRobotFuntioning | ComponentRobotPlansForYou | ComponentRobotRobotDescription | ComponentSoftwareFactoryBenefitsNavPills | ComponentSoftwareFactoryBenefits | ComponentSoftwareFactoryDeliverablesCards | ComponentSoftwareFactoryDeliverables | ComponentSoftwareFactoryDigitalServices | ComponentSoftwareFactoryFactoryServices | ComponentSoftwareFactoryTimeMarket | ComponentSpecializedServicesContactus | ComponentSpecializedServicesRecruitBest | ComponentSpecializedServicesRequestQuote | ComponentSpecializedServicesTalentAttractionCards | ComponentSpecializedServicesTalentAttraction | ComponentSpecializedServicesTalentScout | ComponentTechnologyConsultingConsultingOptions | ComponentTechnologyConsultingOfferGuarantees | ComponentTechnologyConsultingSuccessStories | ComponentTechnologyConsultingTaskOptimizationCards | ComponentTechnologyConsultingTaskOptimization | ComponentVacanciesiwBenefits | ComponentVacanciesiwForm | ComponentVacanciesiwSearch
 
 type Mutation {
   createArticle(input: createArticleInput): createArticlePayload
@@ -2071,8 +2265,9 @@ type Mutation {
 
 type NavigationMenu {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   body: [NavigationMenuBodyDynamicZone]
 }
 
@@ -2089,8 +2284,9 @@ input NavigationMenuInput {
 
 type QualityAssurance {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   qaDescription: ComponentQualityAssuranceQaDescription
   qaOffer: ComponentQualityAssuranceQaOffer
@@ -2159,8 +2355,9 @@ type Query {
 
 type Robot {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   funtioning: ComponentRobotFuntioning
   benefits: ComponentRobotBenefits
@@ -2190,8 +2387,9 @@ input RoleInput {
 
 type SoftwareFactory {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   timeMarket: ComponentSoftwareFactoryTimeMarket
   factoryServices: ComponentSoftwareFactoryFactoryServices
@@ -2226,8 +2424,9 @@ input SpecializedServiceInput {
 
 type SpecializedServices {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageHeader
   talentScout: ComponentSpecializedServicesTalentScout
   talentAttraction: ComponentSpecializedServicesTalentAttraction
@@ -2238,8 +2437,9 @@ type SpecializedServices {
 
 type Specialties {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
   name_en: String
 }
@@ -2255,7 +2455,12 @@ type SpecialtiesConnection {
   aggregate: SpecialtiesAggregator
 }
 
-type SpecialtiesConnectionCreated_at {
+type SpecialtiesConnection_id {
+  key: ID
+  connection: SpecialtiesConnection
+}
+
+type SpecialtiesConnectionCreatedAt {
   key: DateTime
   connection: SpecialtiesConnection
 }
@@ -2275,15 +2480,16 @@ type SpecialtiesConnectionName_en {
   connection: SpecialtiesConnection
 }
 
-type SpecialtiesConnectionUpdated_at {
+type SpecialtiesConnectionUpdatedAt {
   key: DateTime
   connection: SpecialtiesConnection
 }
 
 type SpecialtiesGroupBy {
   id: [SpecialtiesConnectionId]
-  created_at: [SpecialtiesConnectionCreated_at]
-  updated_at: [SpecialtiesConnectionUpdated_at]
+  _id: [SpecialtiesConnection_id]
+  createdAt: [SpecialtiesConnectionCreatedAt]
+  updatedAt: [SpecialtiesConnectionUpdatedAt]
   name: [SpecialtiesConnectionName]
   name_en: [SpecialtiesConnectionName_en]
 }
@@ -2306,8 +2512,9 @@ input TagInput {
 
 type Tags {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
   name_en: String
   vacancies(sort: String, limit: Int, start: Int, where: JSON): [Vacancies]
@@ -2321,8 +2528,9 @@ type TagsAggregator {
 
 type TagsBlog {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
   name_en: String
   articles(sort: String, limit: Int, start: Int, where: JSON): [Articles]
@@ -2339,7 +2547,12 @@ type TagsBlogConnection {
   aggregate: TagsBlogAggregator
 }
 
-type TagsBlogConnectionCreated_at {
+type TagsBlogConnection_id {
+  key: ID
+  connection: TagsBlogConnection
+}
+
+type TagsBlogConnectionCreatedAt {
   key: DateTime
   connection: TagsBlogConnection
 }
@@ -2359,15 +2572,16 @@ type TagsBlogConnectionName_en {
   connection: TagsBlogConnection
 }
 
-type TagsBlogConnectionUpdated_at {
+type TagsBlogConnectionUpdatedAt {
   key: DateTime
   connection: TagsBlogConnection
 }
 
 type TagsBlogGroupBy {
   id: [TagsBlogConnectionId]
-  created_at: [TagsBlogConnectionCreated_at]
-  updated_at: [TagsBlogConnectionUpdated_at]
+  _id: [TagsBlogConnection_id]
+  createdAt: [TagsBlogConnectionCreatedAt]
+  updatedAt: [TagsBlogConnectionUpdatedAt]
   name: [TagsBlogConnectionName]
   name_en: [TagsBlogConnectionName_en]
 }
@@ -2386,7 +2600,12 @@ type TagsConnection {
   aggregate: TagsAggregator
 }
 
-type TagsConnectionCreated_at {
+type TagsConnection_id {
+  key: ID
+  connection: TagsConnection
+}
+
+type TagsConnectionCreatedAt {
   key: DateTime
   connection: TagsConnection
 }
@@ -2406,15 +2625,16 @@ type TagsConnectionName_en {
   connection: TagsConnection
 }
 
-type TagsConnectionUpdated_at {
+type TagsConnectionUpdatedAt {
   key: DateTime
   connection: TagsConnection
 }
 
 type TagsGroupBy {
   id: [TagsConnectionId]
-  created_at: [TagsConnectionCreated_at]
-  updated_at: [TagsConnectionUpdated_at]
+  _id: [TagsConnection_id]
+  createdAt: [TagsConnectionCreatedAt]
+  updatedAt: [TagsConnectionUpdatedAt]
   name: [TagsConnectionName]
   name_en: [TagsConnectionName_en]
 }
@@ -2435,8 +2655,9 @@ input TeamInput {
 
 type Teams {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
   lastName: String
   linkedin: String
@@ -2459,7 +2680,12 @@ type TeamsConnection {
   aggregate: TeamsAggregator
 }
 
-type TeamsConnectionCreated_at {
+type TeamsConnection_id {
+  key: ID
+  connection: TeamsConnection
+}
+
+type TeamsConnectionCreatedAt {
   key: DateTime
   connection: TeamsConnection
 }
@@ -2509,15 +2735,16 @@ type TeamsConnectionSpecialty {
   connection: TeamsConnection
 }
 
-type TeamsConnectionUpdated_at {
+type TeamsConnectionUpdatedAt {
   key: DateTime
   connection: TeamsConnection
 }
 
 type TeamsGroupBy {
   id: [TeamsConnectionId]
-  created_at: [TeamsConnectionCreated_at]
-  updated_at: [TeamsConnectionUpdated_at]
+  _id: [TeamsConnection_id]
+  createdAt: [TeamsConnectionCreatedAt]
+  updatedAt: [TeamsConnectionUpdatedAt]
   name: [TeamsConnectionName]
   lastName: [TeamsConnectionLastName]
   linkedin: [TeamsConnectionLinkedin]
@@ -2530,8 +2757,9 @@ type TeamsGroupBy {
 
 type TechnologyConsulting {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   taskOptimization: ComponentTechnologyConsultingTaskOptimization
   taskOptimizationCards: [ComponentTechnologyConsultingTaskOptimizationCards]
@@ -2720,8 +2948,9 @@ scalar Upload
 
 type UploadFile {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String!
   alternativeText: String
   caption: String
@@ -2778,6 +3007,11 @@ type UploadFileConnection {
   aggregate: UploadFileAggregator
 }
 
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
 type UploadFileConnectionAlternativeText {
   key: String
   connection: UploadFileConnection
@@ -2788,7 +3022,7 @@ type UploadFileConnectionCaption {
   connection: UploadFileConnection
 }
 
-type UploadFileConnectionCreated_at {
+type UploadFileConnectionCreatedAt {
   key: DateTime
   connection: UploadFileConnection
 }
@@ -2848,7 +3082,7 @@ type UploadFileConnectionSize {
   connection: UploadFileConnection
 }
 
-type UploadFileConnectionUpdated_at {
+type UploadFileConnectionUpdatedAt {
   key: DateTime
   connection: UploadFileConnection
 }
@@ -2865,8 +3099,9 @@ type UploadFileConnectionWidth {
 
 type UploadFileGroupBy {
   id: [UploadFileConnectionId]
-  created_at: [UploadFileConnectionCreated_at]
-  updated_at: [UploadFileConnectionUpdated_at]
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
   name: [UploadFileConnectionName]
   alternativeText: [UploadFileConnectionAlternativeText]
   caption: [UploadFileConnectionCaption]
@@ -2929,6 +3164,9 @@ type UsersPermissionsMeRole {
 
 type UsersPermissionsPermission {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   type: String!
   controller: String!
   action: String!
@@ -2945,6 +3183,9 @@ input UsersPermissionsRegisterInput {
 
 type UsersPermissionsRole {
   id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String!
   description: String
   type: String
@@ -2961,6 +3202,16 @@ type UsersPermissionsRoleConnection {
   values: [UsersPermissionsRole]
   groupBy: UsersPermissionsRoleGroupBy
   aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionCreatedAt {
+  key: DateTime
+  connection: UsersPermissionsRoleConnection
 }
 
 type UsersPermissionsRoleConnectionDescription {
@@ -2983,8 +3234,16 @@ type UsersPermissionsRoleConnectionType {
   connection: UsersPermissionsRoleConnection
 }
 
+type UsersPermissionsRoleConnectionUpdatedAt {
+  key: DateTime
+  connection: UsersPermissionsRoleConnection
+}
+
 type UsersPermissionsRoleGroupBy {
   id: [UsersPermissionsRoleConnectionId]
+  _id: [UsersPermissionsRoleConnection_id]
+  createdAt: [UsersPermissionsRoleConnectionCreatedAt]
+  updatedAt: [UsersPermissionsRoleConnectionUpdatedAt]
   name: [UsersPermissionsRoleConnectionName]
   description: [UsersPermissionsRoleConnectionDescription]
   type: [UsersPermissionsRoleConnectionType]
@@ -2992,8 +3251,9 @@ type UsersPermissionsRoleGroupBy {
 
 type UsersPermissionsUser {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   username: String!
   email: String!
   provider: String
@@ -3013,6 +3273,11 @@ type UsersPermissionsUserConnection {
   aggregate: UsersPermissionsUserAggregator
 }
 
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
 type UsersPermissionsUserConnectionBlocked {
   key: Boolean
   connection: UsersPermissionsUserConnection
@@ -3023,7 +3288,7 @@ type UsersPermissionsUserConnectionConfirmed {
   connection: UsersPermissionsUserConnection
 }
 
-type UsersPermissionsUserConnectionCreated_at {
+type UsersPermissionsUserConnectionCreatedAt {
   key: DateTime
   connection: UsersPermissionsUserConnection
 }
@@ -3048,7 +3313,7 @@ type UsersPermissionsUserConnectionRole {
   connection: UsersPermissionsUserConnection
 }
 
-type UsersPermissionsUserConnectionUpdated_at {
+type UsersPermissionsUserConnectionUpdatedAt {
   key: DateTime
   connection: UsersPermissionsUserConnection
 }
@@ -3060,8 +3325,9 @@ type UsersPermissionsUserConnectionUsername {
 
 type UsersPermissionsUserGroupBy {
   id: [UsersPermissionsUserConnectionId]
-  created_at: [UsersPermissionsUserConnectionCreated_at]
-  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  _id: [UsersPermissionsUserConnection_id]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
   username: [UsersPermissionsUserConnectionUsername]
   email: [UsersPermissionsUserConnectionEmail]
   provider: [UsersPermissionsUserConnectionProvider]
@@ -3072,8 +3338,9 @@ type UsersPermissionsUserGroupBy {
 
 type Vacancies {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   title: String
   title_en: String
   age: String
@@ -3101,6 +3368,11 @@ type VacanciesConnection {
   aggregate: VacanciesAggregator
 }
 
+type VacanciesConnection_id {
+  key: ID
+  connection: VacanciesConnection
+}
+
 type VacanciesConnectionAge {
   key: String
   connection: VacanciesConnection
@@ -3116,7 +3388,7 @@ type VacanciesConnectionContact {
   connection: VacanciesConnection
 }
 
-type VacanciesConnectionCreated_at {
+type VacanciesConnectionCreatedAt {
   key: DateTime
   connection: VacanciesConnection
 }
@@ -3166,7 +3438,7 @@ type VacanciesConnectionTitle_en {
   connection: VacanciesConnection
 }
 
-type VacanciesConnectionUpdated_at {
+type VacanciesConnectionUpdatedAt {
   key: DateTime
   connection: VacanciesConnection
 }
@@ -3183,8 +3455,9 @@ type VacanciesConnectionWorkZone_en {
 
 type VacanciesGroupBy {
   id: [VacanciesConnectionId]
-  created_at: [VacanciesConnectionCreated_at]
-  updated_at: [VacanciesConnectionUpdated_at]
+  _id: [VacanciesConnection_id]
+  createdAt: [VacanciesConnectionCreatedAt]
+  updatedAt: [VacanciesConnectionUpdatedAt]
   title: [VacanciesConnectionTitle]
   title_en: [VacanciesConnectionTitle_en]
   age: [VacanciesConnectionAge]
@@ -3202,8 +3475,9 @@ type VacanciesGroupBy {
 
 type VacanciesIw {
   id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   header: ComponentPageImageWithCapition
   search: ComponentVacanciesiwSearch
   form: ComponentVacanciesiwForm
